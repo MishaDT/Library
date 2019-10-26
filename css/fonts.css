@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Montserrat Alternates Light';
+    src: url('../fonts/MontserratAlternates-Light.eot');
+    src: url('../fonts/MontserratAlternates-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/MontserratAlternates-Light.woff') format('woff'),
+    url('../fonts/MontserratAlternates-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Alternates Regular';
+    src: url('../fonts/MontserratAlternates-Regular.eot');
+    src: url('../fonts/MontserratAlternates-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/MontserratAlternates-Regular.woff') format('woff'),
+    url('../fonts/MontserratAlternates-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Alternates Medium';
+    src: url('../fonts/MontserratAlternates-Medium.eot');
+    src: url('../fonts/MontserratAlternates-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/MontserratAlternates-Medium.woff') format('woff'),
+    url('../fonts/MontserratAlternates-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Alternates Bold';
+    src: url('../fonts/MontserratAlternates-Bold.eot');
+    src: url('../fonts/MontserratAlternates-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/MontserratAlternates-Bold.woff') format('woff'),
+    url('../fonts/MontserratAlternates-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat Alternates Black';
+    src: url('../fonts/MontserratAlternates-Black.eot');
+    src: url('../fonts/MontserratAlternates-Black.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/MontserratAlternates-Black.woff') format('woff'),
+    url('../fonts/MontserratAlternates-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
