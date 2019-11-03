@@ -10,11 +10,11 @@ if (isset($_SESSION['name'])) {
 
     if (isset($_POST['submit'])) {
         extract($_POST);
-        $register = $user->registrationUser($uname, $uemail, $upass);
+        $register = $user->registrationUser($uname, $uemail, $upass); // Вызов функции для регистрации пользователя
         if ($register) {
             header("Location: ../index.php");
         } else {
-            $answer = "<span class='form__answer-danger'>Регистрация не удалась, пожалуйста, повторите попытку</span>";
+            $answer = "<span class='form__answer-danger'>Пользователь с таким именем или E-mail уже существует</span>";
         }
     }
 
@@ -34,6 +34,8 @@ if (isset($_SESSION['name'])) {
 
     <body>
         <?php include_once('navbar.php'); ?>
+
+        <!-- Форма регистрации пользователя -->
         <form class="form" action="" method="post" name="registration">
             <?php if (isset($answer)) echo $answer; ?>
             <h1 class="form__title">Регистрация</h1>
@@ -46,6 +48,7 @@ if (isset($_SESSION['name'])) {
             </span>
         </form>
 
+        <!-- JavaScript валидация формы регистрации -->
         <script src="../js/RegExp.js"></script>
 
     </body>

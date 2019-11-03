@@ -11,7 +11,8 @@ if (isset($_SESSION['name'])) {
         <section class="books">
             <h1 class="title" style="margin-bottom: 50px;">Буду читать позже</h1>
             <div class="books__list">
-                <?php $user->willRead(); ?>
+                <?php $user->willRead(); // Вызов функции для вывода списка книг "читать позже" 
+                    ?>
             </div>
         </section>
     </div>

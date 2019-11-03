@@ -7,9 +7,9 @@ if (isset($_SESSION['name'])) {
     header("Location: ../index.php");
 } else {
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) { // проверка отправки аргументов формы авторизации
         extract($_POST);
-        $login = $user->check_login($name, $password);
+        $login = $user->check_login($name, $password); // отправка аргументов в функцию авторизации пользователя
         if ($login) {
             header("Location: ../index.php");
         } else {
@@ -33,6 +33,8 @@ if (isset($_SESSION['name'])) {
 
     <body>
         <?php include_once('navbar.php'); ?>
+
+        <!-- Форма авторизации пользователя -->
         <form class="form" action="" method="post" name="login">
             <?php if (isset($answer)) echo $answer; ?>
             <h1 class="form__title">Авторизация</h1>
@@ -44,6 +46,7 @@ if (isset($_SESSION['name'])) {
             </span>
         </form>
 
+        <!-- JavaScript валидация формы авторизации -->
         <script src="../js/RegExp.js"></script>
 
     </body>

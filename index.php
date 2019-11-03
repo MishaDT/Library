@@ -46,17 +46,18 @@ $user = new User;
             </ul>
         </div>
     </header>
-<div class="wrapper">
-    <section class="books">
-        <h1 class="title">Каталог книг</h1>
-        <p class="description">Читайте книги совершенно бесплатно</p>
+    <div class="wrapper">
+        <section class="books">
+            <h1 class="title">Каталог книг</h1>
+            <p class="description">Читайте книги совершенно бесплатно</p>
 
-        <div class="books__list">
-            <?php $user->books(); ?>
-            <button class="button__read_more"><?php if (isset($_SESSION['name'])) {?> Читать ещё <?php } else { ?> Ещё книги <?php } ?></button>
-        </div>
-    </section>
-</div>
+            <div class="books__list">
+                <!-- Вывод каталога книг -->
+                <?php $user->books(); ?>
+                <button class="button__read_more"><?php if (isset($_SESSION['name'])) { ?> Читать ещё <?php } else { ?> Ещё книги <?php } ?></button>
+            </div>
+        </section>
+    </div>
 
 </body>
 

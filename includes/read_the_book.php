@@ -11,7 +11,8 @@ if (isset($_SESSION['name'])) {
         <section class="books">
             <h1 class="title" style="margin-bottom: 50px;">Прочитанные книги</h1>
             <div class="books__list">
-                <?php $user->readTheBook(); ?>
+                <?php $user->readTheBook(); // Функция вывода прочитанных книг 
+                    ?>
             </div>
         </section>
     </div>

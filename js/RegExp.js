@@ -1,5 +1,6 @@
-
+// Функция валидации формы регистрации пользователя
 function submitRegistration() {
+    
     let form = document.registration;
 
     if (form.uname.value == "") {
@@ -15,7 +16,9 @@ function submitRegistration() {
 
 }
 
+// Функция валидации формы авторизации пользователя
 function submitAuthorization() {
+
     let form = document.login;
 
     if (form.emailusername.value == "") {

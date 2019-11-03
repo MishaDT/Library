@@ -8,7 +8,7 @@ if (isset($_SESSION['name'])) {
     $uid = $_SESSION['uid'];
     $title = $_GET['title'];
     $author = $_GET['author'];
-    $read = $user->addToWillRead($id, $uid, $title, $author);
+    $read = $user->addToWillRead($id, $uid, $title, $author); // Вызов функции для добавления книги в список "читать позже"
     if (!$read) {
         header("Location: ../index.php");
     } else {

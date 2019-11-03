@@ -2,35 +2,33 @@
 
 include_once 'db.php';
 
-class User
+class User // Класс с полным набором функций
 {
     protected $db;
-    public function __construct()
+    public function __construct() // Функция конструктор
     {
         $this->db = new DB_connect();
         $this->db = $this->db->ret_obj();
     }
 
-    /*** для процесса регистрации ***/
-
-    public function registrationUser($username, $email, $password)
+    public function registrationUser($username, $email, $password) // Функция регистрации пользователя
     {
         $password = md5($password);
 
-        // проверка доступности имени пользователя или электронной почты в БД
+        // Проверка доступности имени пользователя и электронной почты в БД
 
         $query = "SELECT * FROM users WHERE uname='$username' OR uemail='$email'";
 
         $result = $this->db->query($query) or die($this->db->error);
         $count_row = $result->num_rows;
 
-        if ($count_row == 0) {
+        if ($count_row == 0) { // Если пользователя с таким именем и E-mail не существует, то регистрируем пользователя
 
             $query = "INSERT INTO users SET uname='$username', uemail='$email', upass='$password'";
             $result = $this->db->query($query) or die($this->db->error);
             $_SESSION['name'] = $username;
 
-            if ($result) {
+            if ($result) { // Выполняем поиск uid пользователя чтобы добавить его в сессию
                 $query = "SELECT uid FROM users WHERE uname='$username' AND upass='$password'";
                 $result = $this->db->query($query) or die($this->db->error);
                 $user_data = $result->fetch_array(MYSQLI_ASSOC);
@@ -51,22 +49,17 @@ class User
         }
     }
 
-    /*** для процесса входа ***/
-
-    public function check_login($name, $password)
+    public function check_login($name, $password) // Функция авторизации пользователя
     {
 
         $password = md5($password);
 
         $query = "SELECT uid FROM users WHERE uname='$name' AND upass='$password'";
-
         $result = $this->db->query($query) or die($this->db->error);
-
         $user_data = $result->fetch_array(MYSQLI_ASSOC);
         $count_row = $result->num_rows;
 
-        if ($count_row == 1) {
-            $_SESSION['login'] = true; // это логин будет использоваться для сессии
+        if ($count_row == 1) { // Если пользователь найден то выполняем следующие действия
             $uid = $user_data['uid'];
             $query = "SELECT uname FROM users WHERE uid = '$uid'";
             $result = $this->db->query($query) or die($this->error);
@@ -79,7 +72,7 @@ class User
         }
     }
 
-    public function get_fullname($uid)
+    public function get_fullname($uid) // Функция проверки существования пользователя
     {
         $query = "SELECT uname FROM users WHERE uid = '$uid'";
         $result = $this->db->query($query) or die($this->error);
@@ -87,14 +80,15 @@ class User
         echo $user_data['uname'];
     }
 
-    public function user_logout()
+    public function user_logout() // Выход пользователя из сессии
     {
         $_SESSION['login'] = false;
         unset($_SESSION);
         session_destroy();
+        header("Location: ../index.php");
     }
 
-    public function readTheBook()
+    public function readTheBook() // Функция вывода прочитанных книг
     {
         $uid = $_SESSION['uid'];
         $query = "SELECT * FROM `read_the_book` WHERE user_uid='$uid'";
@@ -110,23 +104,23 @@ class User
                     <span class="item-books__author">' . $read_books['author'] . '</span>
                 </div>';
             }
-        } else if ($count_result == 0) {
+        } else if ($count_result == 0) { // Если в списке прочитанных книг пусто (0) 
             echo '<span>Вы ещё ничего не читали!</span>';
         }
     }
 
-    public function deleteWillRead($id, $uid)
+    public function deleteWillRead($id, $uid) // Функция удаления книги из списка "буду читать"
     {
         $query = "DELETE FROM `i_will_read` WHERE id='$id' AND user_uid='$uid'";
-        $result = $this->db->query($query) or die ($this->error);
-        if($result){
+        $result = $this->db->query($query) or die($this->error);
+        if ($result) {
             header('Location: list_will_read.php');
         } else {
             header('Location: list_will_read.php');
         }
     }
 
-    public function books()
+    public function books() // Функция вывода каталога всех книг
     {
         $query = "SELECT * FROM `books`";
         $result = $this->db->query($query) or die($this->error);
@@ -149,7 +143,7 @@ class User
         }
     }
 
-    public function addToReadList($id, $uid)
+    public function addToReadList($id, $uid) // Функция добавления книги в список прочитанных
     {
         $query = "SELECT * FROM `books` WHERE id='$id'";
         $result = $this->db->query($query) or die($this->error);
@@ -163,17 +157,16 @@ class User
         $result = $this->db->query($query) or die($this->db->error);
         $count_row = $result->num_rows;
 
-        if ($count_row == 1) {
+        if ($count_row == 1) { // Есди такая книга уже есть в списке прочитанных то не добавляем
             return false;
-        } else {
+        } else { // или добавляем в список прочитанных
             $query = "INSERT INTO `read_the_book` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
             $result = $this->db->query($query) or die($this->error);
         }
     }
 
-    public function willRead()
+    public function willRead() // Функция вывода книг из списка "прочитать позже"
     {
-
         $uid = $_SESSION['uid'];
         $query = "SELECT * FROM `i_will_read` WHERE user_uid='$uid'";
         $result = $this->db->query($query) or die($this->error);
@@ -185,7 +178,7 @@ class User
                 </div>
                 <h2 class="item-books__title">' . $read_books['title'] . '</h2>
                 <span class="item-books__author">' . $read_books['author'] . '</span>';
-                $id = $read_books['id'];                
+                $id = $read_books['id'];
                 $users_id = $read_books['users_id'];
                 $title = $read_books['title'];
                 $author = $read_books['author'];
@@ -198,7 +191,7 @@ class User
         }
     }
 
-    public function addToWillRead($id, $uid, $title, $author)
+    public function addToWillRead($id, $uid, $title, $author) // Функция добавления книги в список "читать позже"
     {
         $query = "SELECT * FROM `books` WHERE id='$id'";
         $result = $this->db->query($query) or die($this->error);
@@ -212,7 +205,7 @@ class User
         $result = $this->db->query($query) or die($this->db->error);
         $count_row = $result->num_rows;
 
-        if ($count_row == 1) {
+        if ($count_row == 1) { // Если такая книга уже есть в списке то добавлять не надо
             return false;
         } else {
             $query = "INSERT INTO `i_will_read` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
@@ -220,11 +213,11 @@ class User
         }
     }
 
-    public function bookReadingPage($id, $users_id)
+    public function bookReadingPage($id, $users_id) // Функция вывода книги
     {
         $query = "SELECT * FROM `books` WHERE id='$id' OR id='$users_id'";
-        $result = $this->db->query($query) or die ($this->db->error);
-        while($book = $result->fetch_array(MYSQLI_ASSOC)){
+        $result = $this->db->query($query) or die($this->db->error);
+        while ($book = $result->fetch_array(MYSQLI_ASSOC)) {
             $img  = $book['img'];
             $title  = $book['title'];
             $author = $book['author'];
@@ -238,5 +231,4 @@ class User
             <p class="text_book"><h3 class="title">Книга:</h3><br></p>';
         }
     }
-
 }
