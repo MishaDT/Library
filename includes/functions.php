@@ -232,3 +232,42 @@ class User // Класс с полным набором функций
         }
     }
 }
+
+class Chat
+{
+    protected $db;
+    public function __construct() // Функция конструктор
+    {
+        $this->db = new DB_connect();
+        $this->db = $this->db->ret_obj();
+    }
+
+    public function MessageOutput()
+    {
+        $query = "SELECT * FROM `chat`";
+        $result = $this->db->query($query) or die($this->error);
+        while ($chat = $result->fetch_array(MYSQLI_ASSOC)) {
+            $UserName  = $chat['UserName'];
+            $Message  = $chat['Message'];
+            $SessionName = $_SESSION['name'];
+            if ($UserName == $SessionName) {
+                echo '<div class="margin-message">
+                <h3 class="one-user">' . $UserName . '</h3>
+                <p class="MessageWidth">' . $Message . '</p>
+            </div>';
+            } else {
+                echo '<div class="margin-message">
+                <h3 class="two-user">' . $UserName . '</h3>
+                <p class="MessageWidth">' . $Message . '</p>
+            </div>';
+            }
+        }
+    }
+
+    public function AddMessageChat($name, $message)
+    {
+        $uid = $_SESSION['uid'];
+        $query = "INSERT INTO `chat` (`IdUser`, `UserName`, `Message`) VALUES ('$uid', '$name', '$message')";
+        $result = $this->db->query($query) or die($this->error);
+    }
+}

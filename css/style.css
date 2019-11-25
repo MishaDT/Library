@@ -275,13 +275,13 @@ footer.footer{
     width: 100%;
 }
 
-form.form{
-    max-width: 500px;
+form.form,
+div.form__submission--message{
     display: flex;
     flex-direction: column;
-    margin: 100px auto 0;
+    margin: 20px auto 0;
     text-align: center;
-    padding: 30px 0;
+    padding: 20px 0;
     background-color: #fff;
     border-radius: 25px;
     -webkit-border-radius: 25px;
@@ -291,21 +291,28 @@ form.form{
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
 }
 
+form.form{
+    max-width: 500px;
+    margin-top: 100px;
+}
+
+div.form__submission--message{
+    width: 100%;
+}
+
 h1.form__title{
     display: inline-block;
     font-size: 26px;    
-    margin: 20px;
+    margin: 20px 0 10px;
     text-transform: uppercase;
     font-family: 'Montserrat Alternates Bold';
 }
 
-input.form__input{
+input.form__input,
+input.form__input--chat{
     display: block;
     outline: none;
     border: none;
-    margin: 10px auto;
-    max-width: 70%;
-    width: 70%;
     text-align: center;
     border-bottom: 1px solid transparent;
     padding: 10px;
@@ -317,6 +324,18 @@ input.form__input{
     -o-transition: .3s ease-in-out;
 }
 
+input.form__input{
+    max-width: 70%;
+    width: 70%;
+    margin: 10px auto;
+}
+
+input.form__input--chat{
+    max-width: 50%;
+    width: 50%;
+    margin: 0 auto;
+}
+
 input.form__input:hover{
     border-bottom: 1px solid #000;
     transition: .3s ease-in-out;
@@ -326,13 +345,11 @@ input.form__input:hover{
     -o-transition: .3s ease-in-out;
 }
 
-input.form__input_submit{
+input.form__input_submit,
+input.form__input_submit--chat{
     background-color: #000;
     color: #fff;
-    max-width: 70%;
-    width: 70%;
     font-size: 16px;
-    margin: 20px auto;
     cursor: pointer;
     padding: 10px;
     border-radius: 25px;
@@ -346,6 +363,30 @@ input.form__input_submit{
     -ms-transition: .3s ease-in-out;
     -o-transition: .3s ease-in-out;
     border: none;
+}
+
+input.form__input_submit{
+    max-width: 70%;
+    width: 70%;
+    margin: 10px auto;
+}
+
+input.form__input_submit--chat{
+    max-width: 50%;
+    width: 50%;
+    margin: 10px auto 0 auto;
+}
+
+input.form__input_submit--chat:hover,
+input.form__input_submit--chat:focus{
+    background-color: #009688;
+    box-shadow: 0 5px 10px 0 #065850;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    outline: none;
 }
 
 input.form__input_submit:hover,
@@ -391,4 +432,57 @@ span.form__answer-danger{
 div.books__item-will_read{
     text-decoration: underline; 
     color: #000;
+}
+
+div.chat{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-items: space-between;
+    margin: 0 auto;
+    max-width: 50%;
+}
+
+div.block_message{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 25px;
+    height: 300px;
+    margin-top: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.one-user{
+    color: rgb(89, 86, 255);
+}
+
+.two-user{
+    color: rgb(0, 109, 0);
+}
+
+.margin-message{
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+p.MessageWidth{
+    word-wrap: break-word;
+    display: block;
+    max-width: 75%;
+    line-height: 18px;
 }

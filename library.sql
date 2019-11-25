@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 26 2019 г., 16:15
+-- Время создания: Ноя 25 2019 г., 21:57
 -- Версия сервера: 5.6.38
--- Версия PHP: 5.5.38
+-- Версия PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -54,6 +54,27 @@ INSERT INTO `books` (`id`, `img`, `title`, `author`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `chat`
+--
+
+CREATE TABLE `chat` (
+  `IdMessage` int(11) NOT NULL,
+  `IdUser` int(11) NOT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `Message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `chat`
+--
+
+INSERT INTO `chat` (`IdMessage`, `IdUser`, `UserName`, `Message`) VALUES
+(121, 20, 'Миша', 'Тестовое письмо от Мишы'),
+(122, 26, 'Вася', 'Тестовое письмо от Васи');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `i_will_read`
 --
 
@@ -71,9 +92,6 @@ CREATE TABLE `i_will_read` (
 --
 
 INSERT INTO `i_will_read` (`id`, `img`, `title`, `author`, `users_id`, `user_uid`) VALUES
-(5, 'Начинай с малого.jpg', 'Начинай с малого', 'Оуэйн Сервис', 5, 20),
-(11, 'Взлом креатива.jpg', 'Взлом креатива', 'Майкл Микалко', 2, 20),
-(12, 'Развитие памяти.jpg', 'Развитие памяти', 'Элен Харрис', 8, 20),
 (14, 'Взлом креатива.jpg', 'Взлом креатива', 'Майкл Микалко', 2, 27);
 
 -- --------------------------------------------------------
@@ -107,7 +125,9 @@ INSERT INTO `read_the_book` (`id`, `img`, `title`, `author`, `users_id`, `user_u
 (19, 'Начинай с малого.jpg', 'Начинай с малого', 'Оуэйн Сервис', 5, 20),
 (20, 'Развитие памяти.jpg', 'Развитие памяти', 'Элен Харрис', 8, 20),
 (23, 'Взлом креатива.jpg', 'Взлом креатива', 'Майкл Микалко', 2, 27),
-(24, 'Развитие памяти.jpg', 'Развитие памяти', 'Элен Харрис', 8, 27);
+(24, 'Развитие памяти.jpg', 'Развитие памяти', 'Элен Харрис', 8, 27),
+(25, 'Личная власть.jpg', 'Личная власть', 'Николай Мрочковский', 4, 28),
+(26, 'Илон Маск. История успеха.jpg', 'Илон Маск. Правила успеха', 'Илон Маск', 6, 28);
 
 -- --------------------------------------------------------
 
@@ -132,7 +152,8 @@ INSERT INTO `users` (`uid`, `uname`, `uemail`, `upass`) VALUES
 (23, 'Андрей', 'andrey@gmail.com', '202cb962ac59075b964b07152d234b70'),
 (24, 'Александр', 'sasha@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (26, 'Вася', 'vasya@gmail.com', '202cb962ac59075b964b07152d234b70'),
-(27, 'Дима', 'dima@gmail.com', '202cb962ac59075b964b07152d234b70');
+(27, 'Дима', 'dima@gmail.com', '202cb962ac59075b964b07152d234b70'),
+(28, 'Иван', 'vanya@gmail.com', '25d55ad283aa400af464c76d713c07ad');
 
 --
 -- Индексы сохранённых таблиц
@@ -143,6 +164,12 @@ INSERT INTO `users` (`uid`, `uname`, `uemail`, `upass`) VALUES
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`IdMessage`);
 
 --
 -- Индексы таблицы `i_will_read`
@@ -173,6 +200,12 @@ ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT для таблицы `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `IdMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+
+--
 -- AUTO_INCREMENT для таблицы `i_will_read`
 --
 ALTER TABLE `i_will_read`
@@ -182,13 +215,13 @@ ALTER TABLE `i_will_read`
 -- AUTO_INCREMENT для таблицы `read_the_book`
 --
 ALTER TABLE `read_the_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
