@@ -279,15 +279,15 @@ form.form,
 div.form__submission--message{
     display: flex;
     flex-direction: column;
-    margin: 20px auto 0;
+    margin: 0 auto 0;
     text-align: center;
     padding: 20px 0;
     background-color: #fff;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -ms-border-radius: 0 0 5px 5px;
+    -o-border-radius: 0 0 5px 5px;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
 }
 
@@ -316,7 +316,7 @@ input.form__input--chat{
     text-align: center;
     border-bottom: 1px solid transparent;
     padding: 10px;
-    font-size: 18px;
+    font-size: 14px;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
     -moz-transition: .3s ease-in-out;
@@ -449,22 +449,27 @@ div.block_message{
     overflow-y: auto;
     overflow-x: visible;
     padding: 25px;
-    height: 300px;
-    margin-top: 100px;
+    height: 470px;
+    margin-top: 80px;
     background-color: #fff;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -ms-border-radius: 5px 5px 0 0;
+    -o-border-radius: 5px 5px 0 0;
 }
 ::-webkit-scrollbar {
-    width: 0;
-    background: transparent; 
+    width: 10px;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: rgba(0, 109, 0, .2);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .one-user{
@@ -492,6 +497,10 @@ div.TwoUser__margin-message{
     background: rgba(226, 255, 243, 1);
     padding: 20px;
     border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
 }
 
 p.MessageWidth_OneUser{
