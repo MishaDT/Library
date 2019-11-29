@@ -24,18 +24,22 @@
                 <?php } ?>
             </ul>
             <ul class="header__menu">
-                <li>
+                <li class="header__menu-elements">
                     <?php if (isset($_SESSION['name'])) { ?>
-                        <a href="" class="link">
+                        <a href="/" class="link">
                             <?php echo $_SESSION['name']; ?>
                         </a>
-                    <?php } else { ?>
-                        <a href="registration.php" class="link">Регистрация</a>
-                    <?php } ?>
+                        <ul class="submenu">
+                            <li><a href="chat.php">Сообщения</li>
+                            <li><a href="logout.php">Выйти</a></li>
+                        </ul>
                 </li>
-                <li><?php if (isset($_SESSION['name'])) { ?>
-                        <a href="logout.php">Выйти</a>
-                    <?php  } else { ?>
+            <?php } else { ?>
+                <li>
+                    <a href="registration.php" class="link">Регистрация</a>
+                <?php } ?>
+                </li>
+                <li><?php if (!isset($_SESSION['name'])) { ?>
                         <a href="authorization.php" class="link">Войти</a>
                     <?php } ?>
                 </li>
