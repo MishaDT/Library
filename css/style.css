@@ -469,20 +469,49 @@ div.block_message{
 
 .one-user{
     color: rgb(89, 86, 255);
+    text-align: left;
 }
 
 .two-user{
     color: rgb(0, 109, 0);
+    text-align: end;
 }
 
-.margin-message{
+div.OneUser__margin-message{
     margin-top: 10px;
     font-size: 14px;
+    background: rgba(228, 228, 243, 0.62);
+    padding: 20px;
+    border-radius: 25px;
+    max-width: 55%;
 }
 
-p.MessageWidth{
+div.TwoUser__margin-message{
+    margin-top: 10px;
+    font-size: 14px;
+    background: rgba(226, 255, 243, 1);
+    padding: 20px;
+    border-radius: 25px;
+}
+
+p.MessageWidth_OneUser{
     word-wrap: break-word;
     display: block;
     max-width: 75%;
     line-height: 18px;
+}
+
+p.MessageWidth_TwoUser{
+    word-wrap: break-word;
+    display: block;
+    max-width: 100%;
+    line-height: 18px;
+    text-align: end;
+}
+
+div.TwoUser{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
