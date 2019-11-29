@@ -497,7 +497,6 @@ div.TwoUser__margin-message{
 p.MessageWidth_OneUser{
     word-wrap: break-word;
     display: block;
-    max-width: 75%;
     line-height: 18px;
 }
 
