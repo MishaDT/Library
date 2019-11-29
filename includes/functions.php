@@ -251,15 +251,17 @@ class Chat
             $Message  = $chat['Message'];
             $SessionName = $_SESSION['name'];
             if ($UserName == $SessionName) {
-                echo '<div class="margin-message">
+                echo '<div class="OneUser">
+                <div class="OneUser__margin-message">
                 <h3 class="one-user">' . $UserName . '</h3>
-                <p class="MessageWidth">' . $Message . '</p>
-            </div>';
+                <p class="MessageWidth_OneUser">' . $Message . '</p>
+            </div></div>';
             } else {
-                echo '<div class="margin-message">
+                echo '<div class="TwoUser">
+                <div class="TwoUser__margin-message">
                 <h3 class="two-user">' . $UserName . '</h3>
-                <p class="MessageWidth">' . $Message . '</p>
-            </div>';
+                <p class="MessageWidth_TwoUser">' . $Message . '</p>
+            </div></div>';
             }
         }
     }
