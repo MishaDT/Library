@@ -283,21 +283,26 @@ div.form__submission--message{
     text-align: center;
     padding: 20px 0;
     background-color: #fff;
-    border-radius: 0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px;
-    -moz-border-radius: 0 0 5px 5px;
-    -ms-border-radius: 0 0 5px 5px;
-    -o-border-radius: 0 0 5px 5px;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
 }
 
 form.form{
     max-width: 500px;
     margin-top: 100px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
 }
 
 div.form__submission--message{
     width: 100%;
+    border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -ms-border-radius: 0 0 5px 5px;
+    -o-border-radius: 0 0 5px 5px;
 }
 
 h1.form__title{
