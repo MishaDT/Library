@@ -46,6 +46,7 @@ ul.header__menu{
 }
 
 ul.header__menu li{
+    position: relative;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
     -moz-transition: .3s ease-in-out;
@@ -354,7 +355,7 @@ input.form__input_submit,
 input.form__input_submit--chat{
     background-color: #000;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     padding: 10px;
     border-radius: 25px;
@@ -378,7 +379,7 @@ input.form__input_submit{
 
 input.form__input_submit--chat{
     max-width: 50%;
-    width: 50%;
+    width: 35%;
     margin: 10px auto 0 auto;
 }
 
@@ -491,16 +492,17 @@ div.OneUser__margin-message{
     margin-top: 10px;
     font-size: 14px;
     background: rgba(228, 228, 243, 0.62);
-    padding: 20px;
+    padding: 20px 30px 20px 20px;
     border-radius: 25px;
-    max-width: 55%;
+    max-width: 70%;
 }
 
 div.TwoUser__margin-message{
     margin-top: 10px;
     font-size: 14px;
+    max-width: 70%;
     background: rgba(226, 255, 243, 1);
-    padding: 20px;
+    padding: 20px 20px 20px 30px;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -527,4 +529,51 @@ div.TwoUser{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+ul.header__menu > li > ul{
+    position: absolute;
+    background-color: #000;
+    visibility: hidden;
+    opacity: 0; 
+}
+
+ul.header__menu > li:hover .submenu{
+    visibility: visible;
+    opacity: 1; 
+}
+
+li.header__menu-elements a.link{
+    position: relative;
+    padding: 0 30px 0 15px;
+}
+
+li.header__menu-elements a.link::after{
+    content: "";
+    position: absolute;
+    top: 46%;
+    right: 10%;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #fff;
+    border-top: 0;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+}
+
+li.header__menu-elements:hover a.link::after{
+    transition: .3s ease-in-out;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
 }
