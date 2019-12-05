@@ -21,7 +21,7 @@ $user = new User;
     <header class="header">
         <div class="wrapper">
             <ul class="header__menu">
-                <li><a href="index.php" class="link">Каталог</a></li>
+                <li><span class="link logo">Library</span></li>
                 <?php if (isset($_SESSION['name'])) { ?>
                     <li><a href="includes/read_the_book.php" class="link">Прочитанные книги</a></li>
                     <li><a href="includes/list_will_read.php" class="link">Буду читать</a></li>
