@@ -45,7 +45,14 @@ ul.header__menu{
     display: flex;
 }
 
-ul.header__menu li{
+ul.header__menu-center{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ul.header__menu li,
+ul.header__menu-center li{
     position: relative;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
@@ -54,8 +61,10 @@ ul.header__menu li{
     -o-transition: .3s ease-in-out;
 }
 
-ul.header__menu li:hover,
-ul.header__menu li:active{
+ul.header__menu li a:hover,
+ul.header__menu li a:active,
+ul.header__menu-center li a:hover,
+ul.header__menu-center li a:active{
     background-color: #009688;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
@@ -65,7 +74,31 @@ ul.header__menu li:active{
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-ul.header__menu li a{
+span.link.logo{
+    font-size: 24px;
+    font-family: 'Montserrat Alternates Bold';
+    font-weight: 900;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+}
+
+span.link.logo:hover{
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    text-shadow: 2px 3px 4px #0befd9;
+}
+
+ul.header__menu li a,
+ul.header__menu li span,
+ul.header__menu-center li a,
+ul.header__menu-center li span{
+    cursor: pointer;
     display: block;
     color: #fff;
     line-height: 60px;
