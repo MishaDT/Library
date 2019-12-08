@@ -4,7 +4,7 @@ include_once 'db.php';
 
 class User // Класс с полным набором функций
 {
-    protected $db;
+    public $db;
     public function __construct() // Функция конструктор
     {
         $this->db = new DB_connect();
@@ -117,29 +117,6 @@ class User // Класс с полным набором функций
             header('Location: list_will_read.php');
         } else {
             header('Location: list_will_read.php');
-        }
-    }
-
-    public function books() // Функция вывода каталога всех книг
-    {
-        $query = "SELECT * FROM `books`";
-        $result = $this->db->query($query) or die($this->error);
-        while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
-            $id = $read_books['id'];
-            $img = $read_books['img'];
-            $title = $read_books['title'];
-            $author = $read_books['author'];
-            echo '<div class="books__item">
-                <div class="item-books__img">
-                    <img src="../img/' . $img . '" alt="' . $title . '">
-                </div>
-                    <h2 class="item-books__title">' . $title . '</h2>
-                    <span class="item-books__author">' . $author . '</span>';
-            if (isset($_SESSION['name'])) {
-                echo "<a href=\"includes/book_reading_page.php?id=$id\" class='item-books__button'>Читать</a>";
-                echo "<a href=\"includes/i_will_read.php?id=$id?title=$title?author=$author\" style='text-decoration: underline; color: #000;' class='item-books__will_read'>Читать позже</a>";
-            }
-            echo '</div>';
         }
     }
 
