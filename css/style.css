@@ -615,3 +615,15 @@ div#remove_row{
     display: block;
     width: 100%;
 }
+
+.scrollup{
+    width: 40px;
+    height: 40px;
+    opacity: .5;
+    position: fixed;
+    bottom: 180px;
+    left: 45px;
+    display: block;
+    cursor: pointer;
+    background: url('../img/icon_top.png') no-repeat;
+}
