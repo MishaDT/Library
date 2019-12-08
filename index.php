@@ -51,12 +51,14 @@ $user = new User();
         </div>
     </header>
     <div class="wrapper">
+        <span class="scrollup"></span>
         <section class="books">
             <h1 class="title">Каталог книг</h1>
             <p class="description">Читайте книги совершенно бесплатно</p>
             <?php $user->books(); ?>
         </section>
     </div>
+    <script type="text/javascript" src="js/ajax.js"></script>
     <script src="js/book_output.js"></script>
 </body>
 
