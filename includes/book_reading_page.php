@@ -10,6 +10,7 @@ if (isset($_SESSION['name'])) {
     if (isset($_GET['id']) || isset($_GET['users_id'])) {  // проверка отправки id книги и id сессии пользователя 
         ?>
         <div class="wrapper">
+            <span class="scrollup"></span>
             <section class="books">
                 <?php
                         $id = $_GET['id'];
@@ -20,7 +21,11 @@ if (isset($_SESSION['name'])) {
                         ?>
             </section>
         </div>
+        <script src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/ajax.js"></script>
+        </body>
 
+        </html>
 <?php
     }
 } else {

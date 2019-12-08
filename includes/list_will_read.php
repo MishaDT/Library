@@ -8,6 +8,7 @@ if (isset($_SESSION['name'])) {
     $book_id = $_GET['id'];
     ?>
     <div class="wrapper">
+        <span class="scrollup"></span>
         <section class="books">
             <h1 class="title" style="margin-bottom: 50px;">Буду читать позже</h1>
             <div class="books__list">
@@ -16,6 +17,8 @@ if (isset($_SESSION['name'])) {
             </div>
         </section>
     </div>
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/ajax.js"></script>
     </body>
 
     </html>
