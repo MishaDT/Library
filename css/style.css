@@ -610,3 +610,8 @@ li.header__menu-elements:hover a.link::after{
     -ms-transition: .3s ease-in-out;
     -o-transition: .3s ease-in-out;
 }
+
+div#remove_row{
+    display: block;
+    width: 100%;
+}
