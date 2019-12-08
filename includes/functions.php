@@ -11,6 +11,73 @@ class User // Класс с полным набором функций
         $this->db = $this->db->ret_obj();
     }
 
+    public function AjaxBookOutput($last_video_id)
+    {
+        $output = '';
+        $video_id = '';
+        $que = "SELECT COUNT(*) as num_rows FROM books WHERE id < $last_video_id";
+        $res = $this->db->query($que) or die($this->error);
+        $ro = $res->fetch_array(MYSQLI_ASSOC);
+        $totalRowCount = $ro['num_rows'];
+        $showLimit = 9;
+        $query = "SELECT * FROM `books` WHERE id > $last_video_id LIMIT $showLimit";
+        $result = $this->db->query($query) or die($this->error);
+        if ($row = $result->num_rows > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $video_id = $row["id"];
+                $img = $row['img'];
+                $title = $row['title'];
+                $author = $row['author'];
+                $output .= '<div class="books__item"> 
+        <div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
+            </div>
+                <h2 class="item-books__title">' . $title . '</h2>
+                <span class="item-books__author">' . $author . '</span>';
+                if (isset($_SESSION['name'])) {
+                    $output .= "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>";
+                    $output .= "<a href=\"includes/i_will_read.php?id=$video_id?title=$title?author=$author\" style='text-decoration: underline; color: #000;' class='item-books__will_read'>Читать позже</a>";
+                }
+                $output .= '</div>';
+            }
+            if($totalRowCount < $showLimit) {
+                $output .= '<div id="remove_row"><button type="button" name="btn_more" data-vid="' . $video_id . '" id="btn_more" class="button__read_more form-control">Ещё книги...</button></div>';
+            }
+            $output .= '</div>';
+            echo $output;
+        }
+    }
+
+    public function books()
+    {
+        $limit = 9;
+        echo '<div class="books__list" id="books__list">';
+        $query = "SELECT * FROM `books` LIMIT $limit";
+        $result = $this->db->query($query) or die($this->db->error);
+        $video_id = '';
+        while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
+            $video_id = $read_books['id'];
+            $img = $read_books['img'];
+            $title = $read_books['title'];
+            $author = $read_books['author'];
+            echo '<div class="books__item">
+            <div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
+            </div>
+            <h2 class="item-books__title">' . $title . '</h2>
+            <span class="item-books__author">' . $author . '</span>';
+            if (isset($_SESSION['name'])) {
+                echo "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>";
+                echo "<a href=\"includes/i_will_read.php?id=$video_id?title=$title?author=$author\" style='text-decoration: underline; color: #000;' class='item-books__will_read'>Читать позже</a>";
+            }
+            echo '</div>';
+        }
+        echo '</div>
+    <div id="remove_row">';
+        echo '<button class="button__read_more form-control" type="button" name="btn_more" data-vid="' . $video_id . '" id="btn_more">Ещё книги...</button>
+    </div>';
+    }
+
     public function registrationUser($username, $email, $password) // Функция регистрации пользователя
     {
         $password = md5($password);
