@@ -1,4 +1,23 @@
 $(document).ready(function () {
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1000) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    });
+
+    $('.scrollup').click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 600);
+        return false;
+    });
+
+});
+
+$(document).ready(function () {
     $("#InputMessage").keyup(function (e) {
         var InputMessage = $("#InputMessage").val();
         var sub = document.getElementById("FormSub");
