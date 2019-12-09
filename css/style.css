@@ -106,6 +106,7 @@ ul.header__menu-center li span{
 }
 
 section.books{
+    position: relative;
     padding: 60px 40px;
     margin: 120px 0 120px 0;
     text-align: center;
@@ -620,10 +621,38 @@ div#remove_row{
     width: 40px;
     height: 40px;
     opacity: .5;
-    position: fixed;
-    bottom: 180px;
-    left: 45px;
+    padding-left: 40px;
     display: block;
+    z-index: 68;
+    background: url(../img/icon_top.png) no-repeat;
+}
+
+.two_margin{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    margin: 0 auto;
+    background-color: #000;
+    border-radius: 25px;
     cursor: pointer;
-    background: url('../img/icon_top.png') no-repeat;
+}
+
+div.margin_scroll{
+    position: absolute;
+    left: 0px;
+    display: block;
+    bottom: -70px;
+    width: 100%;
+}
+
+span.scroll_up{
+    display: block;
+    line-height: 40px;
+    background-color: #000;
+    opacity: .5;
+    padding: 0 10px 0 0px;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 900;
+    font-family: 'Montserrat Alternates Bold';
 }
