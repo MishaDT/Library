@@ -1,20 +1,16 @@
-$(document).ready(function () {
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 600) {
-            $('.two_margin').fadeIn();
-        } else {
-            $('.two_margin').fadeOut();
-        }
+function up() {
+    var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+    if (top > 0) {
+        window.scrollBy(0, ((top + 100) / -10));
+        t = setTimeout('up()', 20);
+    } else clearTimeout(t);
+    return false;
+}
+jQuery(function (f) {
+    var element = f('#button_top');
+    f(window).scroll(function () {
+        element['fade' + (f(this).scrollTop() > 200 ? 'In' : 'Out')](250);
     });
-
-    $('.two_margin').click(function () {
-        $("html, body").animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
-
 });
 
 $(document).ready(function () {
