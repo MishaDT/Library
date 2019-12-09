@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,20 +7,20 @@
     font-family: 'Montserrat Alternates Regular';
 }
 
-body{
+body {
     position: relative;
-    background-color: rgba(0,0,0,0.0784314);
+    background-color: rgba(0, 0, 0, 0.0784314);
     line-height: 1.25;
     height: 100%;
 }
 
-div.wrapper{
+div.wrapper {
     width: 1100px;
     margin: 0 auto;
     height: 100%;
 }
 
-header.header{
+header.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -29,30 +29,28 @@ header.header{
     background-color: #000;
 }
 
-header.header > div.wrapper,
-footer.footer > div.wrapper{
+header.header>div.wrapper, footer.footer>div.wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 60px;
 }
 
-header.header > div.wrapper-center{
+header.header>div.wrapper-center {
     justify-content: center;
 }
 
-ul.header__menu{
+ul.header__menu {
     display: flex;
 }
 
-ul.header__menu-center{
+ul.header__menu-center {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-ul.header__menu li,
-ul.header__menu-center li{
+ul.header__menu li, ul.header__menu-center li {
     position: relative;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
@@ -61,10 +59,7 @@ ul.header__menu-center li{
     -o-transition: .3s ease-in-out;
 }
 
-ul.header__menu li a:hover,
-ul.header__menu li a:active,
-ul.header__menu-center li a:hover,
-ul.header__menu-center li a:active{
+ul.header__menu li a:hover, ul.header__menu li a:active, ul.header__menu-center li a:hover, ul.header__menu-center li a:active {
     background-color: #009688;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
@@ -74,7 +69,7 @@ ul.header__menu-center li a:active{
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-span.link.logo{
+span.link.logo {
     font-size: 24px;
     font-family: 'Montserrat Alternates Bold';
     font-weight: 900;
@@ -85,7 +80,7 @@ span.link.logo{
     -o-transition: .3s ease-in-out;
 }
 
-span.link.logo:hover{
+span.link.logo:hover {
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
     -moz-transition: .3s ease-in-out;
@@ -94,10 +89,7 @@ span.link.logo:hover{
     text-shadow: 2px 3px 4px #0befd9;
 }
 
-ul.header__menu li a,
-ul.header__menu li span,
-ul.header__menu-center li a,
-ul.header__menu-center li span{
+ul.header__menu li a, ul.header__menu li span, ul.header__menu-center li a, ul.header__menu-center li span {
     cursor: pointer;
     display: block;
     color: #fff;
@@ -105,7 +97,7 @@ ul.header__menu-center li span{
     padding: 0 15px;
 }
 
-section.books{
+section.books {
     position: relative;
     padding: 60px 40px;
     margin: 120px 0 120px 0;
@@ -118,15 +110,15 @@ section.books{
     -o-border-radius: 20px;
 }
 
-h1.title{
+h1.title {
     display: inline-block;
     position: relative;
     color: #000;
-    font-family: 'Montserrat Alternates Black';    
+    font-family: 'Montserrat Alternates Black';
     padding: 0 0 15px 0;
 }
 
-h1.title::after{
+h1.title::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -146,37 +138,37 @@ h1.title::after{
     -o-border-radius: 50px;
 }
 
-h3.title{
+h3.title {
     display: block;
     color: #000;
-    font-family: 'Montserrat Alternates Medium';    
+    font-family: 'Montserrat Alternates Medium';
     padding: 30px 0 0 0;
 }
 
-h3.description__title{
+h3.description__title {
     display: block;
     color: #000;
-    font-family: 'Montserrat Alternates Medium';    
+    font-family: 'Montserrat Alternates Medium';
     padding: 0;
 }
 
-p.description{
+p.description {
     display: block;
     margin: 20px 0;
 }
 
-p.book_description{
+p.book_description {
     display: block;
     margin: 0;
 }
 
-div.books__list{
+div.books__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-div.books__item{
+div.books__item {
     display: flex;
     flex-direction: column;
     width: calc(90% / 3);
@@ -184,11 +176,11 @@ div.books__item{
     margin: 10px;
 }
 
-a.book__item-link{
+a.book__item-link {
     color: #000;
 }
 
-div.item-books__img{
+div.item-books__img {
     display: block;
     margin: 0 auto;
     max-width: 185px;
@@ -201,11 +193,11 @@ div.item-books__img{
     -o-border-radius: 25px;
 }
 
-div.margin-books__img{
+div.margin-books__img {
     margin: 20px auto;
 }
 
-div.item-books__img img{
+div.item-books__img img {
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -218,7 +210,7 @@ div.item-books__img img{
     -o-transition: .4s ease-in-out;
 }
 
-div.item-books__img img:hover{
+div.item-books__img img:hover {
     transition: .4s ease-in-out;
     transform: scale(.97);
     -webkit-transform: scale(.97);
@@ -231,19 +223,19 @@ div.item-books__img img:hover{
     -o-transition: .4s ease-in-out;
 }
 
-h2.item-books__title{
-    font-family: 'Montserrat Alternates Bold';        
+h2.item-books__title {
+    font-family: 'Montserrat Alternates Bold';
     display: inline-block;
     margin: 10px 0;
     font-size: 18px;
 }
 
-span.item-books__author{
+span.item-books__author {
     display: inline-block;
     margin: 10px 0;
 }
 
-a.item-books__button{
+a.item-books__button {
     display: block;
     background: #000;
     color: #fff;
@@ -252,8 +244,7 @@ a.item-books__button{
     min-width: 50%;
 }
 
-a.item-books__button,
-button.button__read_more{
+a.item-books__button, button.button__read_more {
     padding: 15px 10px;
     border-radius: 50px;
     cursor: pointer;
@@ -266,7 +257,7 @@ button.button__read_more{
     -o-transition: .3s ease-in-out;
 }
 
-a.item-books__button:hover{ 
+a.item-books__button:hover {
     box-shadow: 0 5px 5px 0 #065850;
     background: #009688;
     color: #fff;
@@ -277,7 +268,7 @@ a.item-books__button:hover{
     -o-transition: .3s ease-in-out;
 }
 
-button.button__read_more{
+button.button__read_more {
     margin-top: 60px;
     background: #fff;
     color: #000;
@@ -291,7 +282,7 @@ button.button__read_more{
     -o-transition: .3s ease-in-out;
 }
 
-button.button__read_more:hover{
+button.button__read_more:hover {
     box-shadow: 0 0 0 5px #009688;
     background: #009688;
     color: #fff;
@@ -303,15 +294,14 @@ button.button__read_more:hover{
     -o-transition: .3s ease-in-out;
 }
 
-footer.footer{
+footer.footer {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
 }
 
-form.form,
-div.form__submission--message{
+form.form, div.form__submission--message {
     display: flex;
     flex-direction: column;
     margin: 0 auto 0;
@@ -321,7 +311,7 @@ div.form__submission--message{
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 1);
 }
 
-form.form{
+form.form {
     max-width: 500px;
     margin-top: 100px;
     border-radius: 25px;
@@ -331,7 +321,7 @@ form.form{
     -o-border-radius: 25px;
 }
 
-div.form__submission--message{
+div.form__submission--message {
     width: 100%;
     border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;
@@ -340,16 +330,15 @@ div.form__submission--message{
     -o-border-radius: 0 0 5px 5px;
 }
 
-h1.form__title{
+h1.form__title {
     display: inline-block;
-    font-size: 26px;    
+    font-size: 26px;
     margin: 20px 0 10px;
     text-transform: uppercase;
     font-family: 'Montserrat Alternates Bold';
 }
 
-input.form__input,
-input.form__input--chat{
+input.form__input, input.form__input--chat {
     display: block;
     outline: none;
     border: none;
@@ -364,19 +353,19 @@ input.form__input--chat{
     -o-transition: .3s ease-in-out;
 }
 
-input.form__input{
+input.form__input {
     max-width: 70%;
     width: 70%;
     margin: 10px auto;
 }
 
-input.form__input--chat{
+input.form__input--chat {
     max-width: 50%;
     width: 50%;
     margin: 0 auto;
 }
 
-input.form__input:hover{
+input.form__input:hover {
     border-bottom: 1px solid #000;
     transition: .3s ease-in-out;
     -webkit-transition: .3s ease-in-out;
@@ -385,8 +374,7 @@ input.form__input:hover{
     -o-transition: .3s ease-in-out;
 }
 
-input.form__input_submit,
-input.form__input_submit--chat{
+input.form__input_submit, input.form__input_submit--chat {
     background-color: #000;
     color: #fff;
     font-size: 14px;
@@ -405,20 +393,19 @@ input.form__input_submit--chat{
     border: none;
 }
 
-input.form__input_submit{
+input.form__input_submit {
     max-width: 70%;
     width: 70%;
     margin: 10px auto;
 }
 
-input.form__input_submit--chat{
+input.form__input_submit--chat {
     max-width: 50%;
     width: 35%;
     margin: 10px auto 0 auto;
 }
 
-input.form__input_submit--chat:hover,
-input.form__input_submit--chat:focus{
+input.form__input_submit--chat:hover, input.form__input_submit--chat:focus {
     background-color: #009688;
     box-shadow: 0 5px 10px 0 #065850;
     transition: .3s ease-in-out;
@@ -429,8 +416,7 @@ input.form__input_submit--chat:focus{
     outline: none;
 }
 
-input.form__input_submit:hover,
-input.form__input_submit:focus{
+input.form__input_submit:hover, input.form__input_submit:focus {
     background-color: #009688;
     box-shadow: 0 5px 10px 0 #065850;
     transition: .3s ease-in-out;
@@ -441,40 +427,40 @@ input.form__input_submit:focus{
     outline: none;
 }
 
-span.form__account{
+span.form__account {
     display: block;
     margin: 10px 0 0 0;
 }
 
-a.form__link{
+a.form__link {
     display: inline-block;
     margin: 8px;
 }
 
-span.form__answer-success{
-    display:inline-block;
-    text-align:center; 
-    margin: 0 auto; 
-    padding: 0 30px; 
-    color: green; 
+span.form__answer-success {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    color: green;
     max-width: 80%;
 }
 
-span.form__answer-danger{
-    display:inline-block;
-    text-align:center; 
-    margin: 0 auto; 
-    padding: 0 30px; 
-    color: red; 
+span.form__answer-danger {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    color: red;
     max-width: 80%;
 }
 
-div.books__item-will_read{
-    text-decoration: underline; 
+div.books__item-will_read {
+    text-decoration: underline;
     color: #000;
 }
 
-div.chat{
+div.chat {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -484,7 +470,7 @@ div.chat{
     max-width: 50%;
 }
 
-div.block_message{
+div.block_message {
     width: 100%;
     overflow-y: auto;
     overflow-x: visible;
@@ -499,10 +485,12 @@ div.block_message{
     -ms-border-radius: 5px 5px 0 0;
     -o-border-radius: 5px 5px 0 0;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: rgba(0, 109, 0, .2);
     border-radius: 5px;
@@ -512,17 +500,17 @@ div.block_message{
     -o-border-radius: 5px;
 }
 
-.one-user{
+.one-user {
     color: rgb(89, 86, 255);
     text-align: left;
 }
 
-.two-user{
+.two-user {
     color: rgb(0, 109, 0);
     text-align: end;
 }
 
-div.OneUser__margin-message{
+div.OneUser__margin-message {
     margin-top: 10px;
     font-size: 14px;
     background: rgba(228, 228, 243, 0.62);
@@ -531,7 +519,7 @@ div.OneUser__margin-message{
     max-width: 70%;
 }
 
-div.TwoUser__margin-message{
+div.TwoUser__margin-message {
     margin-top: 10px;
     font-size: 14px;
     max-width: 70%;
@@ -544,13 +532,13 @@ div.TwoUser__margin-message{
     -o-border-radius: 25px;
 }
 
-p.MessageWidth_OneUser{
+p.MessageWidth_OneUser {
     word-wrap: break-word;
     display: block;
     line-height: 18px;
 }
 
-p.MessageWidth_TwoUser{
+p.MessageWidth_TwoUser {
     word-wrap: break-word;
     display: block;
     max-width: 100%;
@@ -558,31 +546,31 @@ p.MessageWidth_TwoUser{
     text-align: end;
 }
 
-div.TwoUser{
+div.TwoUser {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-ul.header__menu > li > ul{
+ul.header__menu>li>ul {
     position: absolute;
     background-color: #000;
     visibility: hidden;
-    opacity: 0; 
+    opacity: 0;
 }
 
-ul.header__menu > li:hover .submenu{
+ul.header__menu>li:hover .submenu {
     visibility: visible;
-    opacity: 1; 
+    opacity: 1;
 }
 
-li.header__menu-elements a.link{
+li.header__menu-elements a.link {
     position: relative;
     padding: 0 30px 0 15px;
 }
 
-li.header__menu-elements a.link::after{
+li.header__menu-elements a.link::after {
     content: "";
     position: absolute;
     top: 46%;
@@ -599,7 +587,7 @@ li.header__menu-elements a.link::after{
     -o-transition: .3s ease-in-out;
 }
 
-li.header__menu-elements:hover a.link::after{
+li.header__menu-elements:hover a.link::after {
     transition: .3s ease-in-out;
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
@@ -612,47 +600,26 @@ li.header__menu-elements:hover a.link::after{
     -o-transition: .3s ease-in-out;
 }
 
-div#remove_row{
+div#remove_row {
     display: block;
     width: 100%;
 }
 
-.scrollup{
-    width: 40px;
-    height: 40px;
-    opacity: .5;
-    padding-left: 40px;
-    display: block;
-    z-index: 68;
-    background: url(../img/icon_top.png) no-repeat;
-}
-
-.two_margin{
-    display: flex;
-    justify-content: center;
-    width: 20%;
-    margin: 0 auto;
-    background-color: #000;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-div.margin_scroll{
-    position: absolute;
-    left: 0px;
-    display: block;
-    bottom: -70px;
-    width: 100%;
-}
-
-span.scroll_up{
-    display: block;
-    line-height: 40px;
-    background-color: #000;
-    opacity: .5;
-    padding: 0 10px 0 0px;
-    border-radius: 25px;
-    color: #fff;
+#button_top {
+    width: 100px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    text-align: center;
     font-weight: 900;
-    font-family: 'Montserrat Alternates Bold';
+    font-size: 14px;
+    text-decoration: none;
+    color: #009688;
+    padding-top: 80px;
+}
+
+#button_top:hover {
+    background: rgba(0, 150, 136, .1);
 }
