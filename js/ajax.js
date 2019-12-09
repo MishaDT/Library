@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 1000) {
-            $('.scrollup').fadeIn();
+        if ($(this).scrollTop() > 600) {
+            $('.two_margin').fadeIn();
         } else {
-            $('.scrollup').fadeOut();
+            $('.two_margin').fadeOut();
         }
     });
 
-    $('.scrollup').click(function () {
+    $('.two_margin').click(function () {
         $("html, body").animate({
             scrollTop: 0
         }, 600);
