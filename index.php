@@ -51,16 +51,11 @@ $user = new User();
         </div>
     </header>
     <div class="wrapper">
+        <span id="button_top" onclick="return up()">&#9650; Наверх</span>
         <section class="books">
             <h1 class="title">Каталог книг</h1>
             <p class="description">Читайте книги совершенно бесплатно</p>
             <?php $user->books(); ?>
-            <div class="margin_scroll">
-                <div class="two_margin">
-            <span class="scrollup"></span>
-            <span class="scroll_up">Вверх</span>
-            </div>
-            </div>
         </section>
     </div>
     <script type="text/javascript" src="js/ajax.js"></script>
