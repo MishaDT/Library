@@ -8,7 +8,7 @@ if (isset($_SESSION['name'])) {
     $book_id = $_GET['id'];
     ?>
     <div class="wrapper">
-        <span class="scrollup"></span>
+        <span id="button_top" onclick="return up()">&#9650; Наверх</span>
         <section class="books">
             <h1 class="title" style="margin-bottom: 50px;">Буду читать позже</h1>
             <div class="books__list">

@@ -10,7 +10,7 @@ if (isset($_SESSION['name'])) {
     if (isset($_GET['id']) || isset($_GET['users_id'])) {  // проверка отправки id книги и id сессии пользователя 
         ?>
         <div class="wrapper">
-            <span class="scrollup"></span>
+            <span id="button_top" onclick="return up()">&#9650; Наверх</span>
             <section class="books">
                 <?php
                         $id = $_GET['id'];
