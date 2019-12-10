@@ -606,7 +606,7 @@ div#remove_row {
 }
 
 #button_top {
-    width: 100px;
+    width: 84px;
     height: 100%;
     position: fixed;
     top: 0;
@@ -622,4 +622,18 @@ div#remove_row {
 
 #button_top:hover {
     background: rgba(0, 150, 136, .1);
+}
+
+button.item-books__will_read{
+    cursor: pointer; 
+    font-size:14px; 
+    background-color:transparent; 
+    border: none; 
+    outline: none; 
+    text-decoration: underline; 
+    color: #000;
+}
+
+button.item-books__will_read:hover{
+    color: #009688;
 }
