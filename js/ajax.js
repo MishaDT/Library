@@ -1,3 +1,17 @@
+function AjaxWillRead(video_id) {
+    var video_id = video_id; 
+    $.ajax({
+        type: "POST",
+        url: "../includes/AjaxInsertWillRead.php",
+        data: {
+            video_id: video_id
+        },
+        success: function(data){
+            // Какой либо эффект
+        }
+    });
+}
+
 function up() {
     var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     if (top > 0) {
