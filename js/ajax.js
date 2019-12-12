@@ -1,5 +1,4 @@
 function AjaxWillRead(video_id) {
-    var video_id = video_id; 
     $.ajax({
         type: "POST",
         url: "../includes/AjaxInsertWillRead.php",
@@ -7,7 +6,14 @@ function AjaxWillRead(video_id) {
             video_id: video_id
         },
         success: function(data){
-            // Какой либо эффект
+            if(data == "Нет") {
+                $('.will_read-'+video_id+'').html('Добавлена ранее');
+                $('.will_read-'+video_id+'').css('color','#fb9292');
+            }
+            if(data == "Да") {
+                $('.will_read-'+video_id+'').html('Успешно добавлена');
+                $('.will_read-'+video_id+'').css('color','#009688');
+            }
         }
     });
 }
