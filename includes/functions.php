@@ -36,7 +36,7 @@ class User // Класс User
                 <span class="item-books__author">' . $author . '</span>';
                 if (isset($_SESSION['name'])) {
                     $output .= "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>";
-                    $output .= "<button class='item-books__will_read' onClick='AjaxWillRead($video_id)'>Читать позже</button>";
+                    $output .= "<button class='item-books__will_read will_read-$video_id' onClick='AjaxWillRead($video_id)'>Читать позже</button>";
                 }
                 $output .= '</div>';
             }
@@ -69,7 +69,7 @@ class User // Класс User
         <span class="item-books__author">' . $author . '</span>';
             if (isset($_SESSION['name'])) {
                 echo "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>"; ?>
-                <button class="item-books__will_read" onClick="AjaxWillRead('<?= $video_id ?>,<?= $title ?>,<?= $author ?>')">Читать позже</button>
+                <button class="item-books__will_read will_read-<?= $video_id ?>" onClick="AjaxWillRead('<?= $video_id ?>,<?= $title ?>,<?= $author ?>')">Читать позже</button>
 <?php }
             echo '</div>';
         }
@@ -251,10 +251,14 @@ class User // Класс User
         $count_row = $result->num_rows;
 
         if ($count_row == 1) { // Если такая книга уже есть в списке то добавлять не надо
+            echo "Нет";
             return false;
         } else {
             $query = "INSERT INTO `i_will_read` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
             $result = $this->db->query($query) or die($this->error);
+            if($result){
+                echo "Да";
+            }
         }
     }
 
