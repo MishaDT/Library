@@ -1,3 +1,24 @@
+function deleteWillRead(id) {
+    $.ajax({
+        type: "POST",
+        url: "../includes/AjaxDeleteWillRead.php",
+        data: {
+            id: id
+        },
+        success: function (data) {
+            $('.books__item-' + id + '').hide(500, function load_data() {
+                $.ajax({
+                    url: "../includes/CallWillRead.php",
+                    method: "POST",
+                    success: function (data) {
+                        $('#books__list').html(data);
+                    }
+                });
+            });
+        }
+    });
+}
+
 function AjaxWillRead(video_id) {
     $.ajax({
         type: "POST",
@@ -5,14 +26,14 @@ function AjaxWillRead(video_id) {
         data: {
             video_id: video_id
         },
-        success: function(data){
-            if(data == "Нет") {
-                $('.will_read-'+video_id+'').html('Добавлена ранее');
-                $('.will_read-'+video_id+'').css('color','#fb9292');
+        success: function (data) {
+            if (data == "Нет") {
+                $('.will_read-' + video_id + '').html('Добавлена ранее');
+                $('.will_read-' + video_id + '').css('color', '#fb9292');
             }
-            if(data == "Да") {
-                $('.will_read-'+video_id+'').html('Успешно добавлена');
-                $('.will_read-'+video_id+'').css('color','#009688');
+            if (data == "Да") {
+                $('.will_read-' + video_id + '').html('Успешно добавлена');
+                $('.will_read-' + video_id + '').css('color', '#009688');
             }
         }
     });
