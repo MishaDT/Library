@@ -181,11 +181,6 @@ class User // Класс User
     {
         $query = "DELETE FROM `i_will_read` WHERE id='$id' AND user_uid='$uid'";
         $result = $this->db->query($query) or die($this->error);
-        if ($result) {
-            header('Location: list_will_read.php');
-        } else {
-            header('Location: list_will_read.php');
-        }
     }
 
     public function addToReadList($id, $uid) // Функция добавления книги в список прочитанных
@@ -216,24 +211,28 @@ class User // Класс User
         $query = "SELECT * FROM `i_will_read` WHERE user_uid='$uid'";
         $result = $this->db->query($query) or die($this->error);
         $count_result = $result->num_rows;
-        if ($count_result >= 1) {
+        if ($count_result > 0) {
+            $output = '';
             while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
-                echo '<div class="books__item"><div class="item-books__img">';
-                echo '<img src="../img/' . $read_books['img'] . '" alt="' . $read_books['tite'] . '">
-                </div>
-                <h2 class="item-books__title">' . $read_books['title'] . '</h2>
-                <span class="item-books__author">' . $read_books['author'] . '</span>';
                 $id = $read_books['id'];
-                $users_id = $read_books['users_id'];
+                $img = $read_books['img'];
                 $title = $read_books['title'];
                 $author = $read_books['author'];
-                echo "<a href=\"book_reading_page.php?id=$users_id\" class='item-books__button'>Читать</a>
-                    <a href=\"delete.php?id=$id\" style='text-decoration: underline; color: #000;'>Удалить</a>";
-                echo "</div>";
+                $users_id = $read_books['users_id'];
+
+                $output .= '<div class="books__item books__item-' . $id . '"><div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
+                </div>
+                <h2 class="item-books__title">' . $title . '</h2>
+                <span class="item-books__author">' . $author . '</span>';
+                $output .= "<a href=\"book_reading_page.php?id=$users_id\" class='item-books__button'>Читать</a>";
+                $output .= "<button class='item-books__will_read will_read-$id' onClick='deleteWillRead($id)'>Удалить</button>
+                </div>";
             }
-        } else if ($count_result == 0) {
-            echo '<span>Вы ещё ничего не добавили в этот раздел!</span>';
+        } else {
+            $output .= '<span>Вы ещё ничего не добавили в этот раздел!</span>';
         }
+        echo $output;
     }
 
     public function addToWillRead($id, $uid) // Функция добавления книги в список "читать позже"
@@ -256,7 +255,7 @@ class User // Класс User
         } else {
             $query = "INSERT INTO `i_will_read` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
             $result = $this->db->query($query) or die($this->error);
-            if($result){
+            if ($result) {
                 echo "Да";
             }
         }
