@@ -9,9 +9,9 @@ if (isset($_SESSION['name'])) { // Если пользователь автор�
     <div class="wrapper">
         <span id="button_top" onclick="return up()">&#9650; Наверх</span> <!-- Кнопка ScrollUp -->
         <section class="books">
-            <h1 class="title" style="margin-bottom: 50px;">Прочитанные книги</h1>
+            <h1 class="title" style="margin-bottom: 50px;">Просмотренные книги</h1>
             <div class="books__list" id="books__list">
-                <?php $user->readTheBook(); // Вызов функции вывода книг из каталога "Прочитанные книги" 
+                <?php $user->BooksViewed(); // Вызов функции вывода каталога книг "Просмотренные книги"
                     ?>
             </div>
         </section>

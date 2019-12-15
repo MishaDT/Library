@@ -1,14 +1,13 @@
 <?php
 
 session_start();
-include_once 'functions.php';
+require_once 'functions.php';
 $user = new User();
 
-if (isset($_SESSION['name'])) {
-    header("Location: ../index.php");
+if (isset($_SESSION['name'])) { // Если пользователь авторизован
+    header("Location: ../index.php"); // Переадресация на главную станицу
 } else {
-
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) { // Проверка отправки формы регистрации
         extract($_POST);
         $register = $user->registrationUser($uname, $uemail, $upass); // Вызов функции для регистрации пользователя
         if ($register) {

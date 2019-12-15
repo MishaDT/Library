@@ -1,14 +1,14 @@
 <?php
 session_start();
-include_once 'functions.php';
-$user = new User;
+require_once 'functions.php';
+$user = new User();
 
-if (isset($_SESSION['name'])) {
+if (isset($_SESSION['name'])) { // Если пользователь авторизован
     $id = $_GET['id'];
     $uid = $_SESSION['uid'];
     $title = $_GET['title'];
     $author = $_GET['author'];
-    $read = $user->addToWillRead($id, $uid, $title, $author); // Вызов функции для добавления книги в список "читать позже"
+    $read = $user->addToWillRead($id, $uid, $title, $author); // Вызов функции добавления книги в каталог "Читать позже"
     if (!$read) {
         header("Location: ../index.php");
     } else {

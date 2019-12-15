@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once 'functions.php';
-
-$user = new User;
-$user->user_logout();
+require_once 'functions.php';
+$user = new User();
+$user->user_logout(); // Вызов функции выхода из аккаунта

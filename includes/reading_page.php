@@ -1,17 +1,12 @@
 <?php
 session_start();
-include_once 'functions.php';
-$user = new User;
+require_once 'functions.php';
+$user = new User();
 
 if (isset($_SESSION['name'])) {
-    $id = $_GET['id'];
+    $id = $_POST['id'];
     $uid = $_SESSION['uid'];
-    $read = $user->addToReadList($id, $uid); // Вызов функции для добавления книги в список прочитанных
-    if (!$read) {
-        header("Location: ../index.php");
-    } else {
-        header("Location: ../index.php");
-    }
+    $user->addToReadList($id, $uid); // Вызов функции добавления книги в каталог "Прочитанные книги"
 } else {
     return false;
     header("Location: ../index.php");

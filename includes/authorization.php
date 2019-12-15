@@ -1,15 +1,14 @@
 <?php
 session_start();
-include_once 'functions.php';
-$user = new User;
+require_once 'functions.php';
+$user = new User();
 
-if (isset($_SESSION['name'])) {
-    header("Location: ../index.php");
+if (isset($_SESSION['name'])) { // Если пользователь авторизован
+    header("Location: ../index.php"); // Переадресация на главную станицу
 } else {
-
-    if (isset($_POST['submit'])) { // проверка отправки аргументов формы авторизации
+    if (isset($_POST['submit'])) { // Проверка отправки формы авторизации
         extract($_POST);
-        $login = $user->check_login($name, $password); // отправка аргументов в функцию авторизации пользователя
+        $login = $user->check_login($name, $password); // Вызов функции для авторизации пользователя
         if ($login) {
             header("Location: ../index.php");
         } else {

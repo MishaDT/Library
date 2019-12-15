@@ -1,9 +1,9 @@
 <?php
 session_start();
-include_once 'functions.php';
-$user = new User;
+require_once 'functions.php';
+$user = new User();
 
-if (isset($_SESSION['name'])) {
+if (isset($_SESSION['name'])) { // Если пользователь авторизован
     $id = $_GET['id'];
     $uid = $_SESSION['uid'];
     $read = $user->deleteWillRead($id, $uid); // Вызов функции удаления книги из списка "буду читать"

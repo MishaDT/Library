@@ -1,6 +1,6 @@
 <?php
 
-include_once 'db.php';
+require_once 'db.php';
 
 class User // Класс User
 {
@@ -9,74 +9,6 @@ class User // Класс User
     {
         $this->db = new DB_connect();
         $this->db = $this->db->ret_obj();
-    }
-
-    public function AjaxBookOutput($last_video_id)
-    {
-        $output = '';
-        $video_id = '';
-        $que = "SELECT COUNT(*) as num_rows FROM books WHERE id < $last_video_id";
-        $res = $this->db->query($que) or die($this->error);
-        $ro = $res->fetch_array(MYSQLI_ASSOC);
-        $totalRowCount = $ro['num_rows'];
-        $showLimit = 9;
-        $query = "SELECT * FROM `books` WHERE id > $last_video_id LIMIT $showLimit";
-        $result = $this->db->query($query) or die($this->error);
-        if ($row = $result->num_rows > 0) {
-            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                $video_id = $row["id"];
-                $img = $row['img'];
-                $title = $row['title'];
-                $author = $row['author'];
-                $output .= '<div class="books__item"> 
-        <div class="item-books__img">
-                <img src="../img/' . $img . '" alt="' . $title . '">
-            </div>
-                <h2 class="item-books__title">' . $title . '</h2>
-                <span class="item-books__author">' . $author . '</span>';
-                if (isset($_SESSION['name'])) {
-                    $output .= "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>";
-                    $output .= "<button class='item-books__will_read will_read-$video_id' onClick='AjaxWillRead($video_id)'>Читать позже</button>";
-                }
-                $output .= '</div>';
-            }
-            if ($totalRowCount < $showLimit) {
-                $output .= '<div id="remove_row"><button type="button" name="btn_more" data-vid="' . $video_id . '" id="btn_more" class="button__read_more form-control">Ещё книги...</button></div>';
-            }
-            $output .= '</div>';
-            echo $output;
-        }
-    }
-
-    public function books()
-    {
-
-        $limit = 9;
-        echo '<div class="books__list" id="books__list">';
-        $query = "SELECT * FROM `books` LIMIT $limit";
-        $result = $this->db->query($query) or die($this->db->error);
-        $video_id = '';
-        while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
-            $video_id = $read_books['id'];
-            $img = $read_books['img'];
-            $title = $read_books['title'];
-            $author = $read_books['author'];
-            echo '<div class="books__item">
-        <div class="item-books__img">
-            <img src="../img/' . $img . '" alt="' . $title . '">
-        </div>';
-            echo '<h2 class="item-books__title">' . $title . '</h2>
-        <span class="item-books__author">' . $author . '</span>';
-            if (isset($_SESSION['name'])) {
-                echo "<a href=\"includes/book_reading_page.php?id=$video_id\" class='item-books__button'>Читать</a>"; ?>
-                <button class="item-books__will_read will_read-<?= $video_id ?>" onClick="AjaxWillRead('<?= $video_id ?>,<?= $title ?>,<?= $author ?>')">Читать позже</button>
-<?php }
-            echo '</div>';
-        }
-        echo '</div>
-<div id="remove_row">';
-        echo '<button class="button__read_more form-control" type="button" name="btn_more" data-vid="' . $video_id . '" id="btn_more">Ещё книги...</button>
-</div>';
     }
 
     public function registrationUser($username, $email, $password) // Функция регистрации пользователя
@@ -156,34 +88,179 @@ class User // Класс User
         header("Location: ../index.php");
     }
 
-    public function readTheBook() // Функция вывода прочитанных книг
+    public function books() // Функция вывода книг каталога(по умолчанию)
+    {
+        $limit = 9;
+        echo '<div class="books__list" id="books__list">';
+        $query = "SELECT * FROM `books` LIMIT $limit";
+        $result = $this->db->query($query) or die($this->db->error);
+        $book_id = '';
+        while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
+            $book_id = $read_books['id'];
+            $img = $read_books['img'];
+            $title = $read_books['title'];
+            $author = $read_books['author'];
+            echo '<div class="books__item">
+        <div class="item-books__img">
+            <img src="../img/' . $img . '" alt="' . $title . '">
+        </div>';
+            echo '<h2 class="item-books__title">' . $title . '</h2>
+        <span class="item-books__author">' . $author . '</span>';
+            if (isset($_SESSION['name'])) {
+                echo "<a href=\"includes/book_reading_page.php?id=$book_id\" class='item-books__button'>Читать</a>"; ?>
+                <button class="item-books__will_read will_read-<?= $book_id ?>" onClick="AjaxWillRead('<?= $book_id ?>,<?= $title ?>,<?= $author ?>')">Читать позже</button>
+<?php }
+            echo '</div>';
+        }
+        echo '</div>
+<div id="remove_row">';
+        echo '<button class="button__read_more form-control" type="button" name="btn_more" data-vid="' . $book_id . '" id="btn_more">Ещё книги...</button>
+</div>';
+    }
+
+    public function AjaxBookOutput($lastBook_id) // Функция вывода книг если была нажата кнопка "Ещё книги..." 
+    {
+        $output = '';
+        $book_id = '';
+        $query_num = "SELECT COUNT(*) as num_rows FROM books WHERE id < $lastBook_id";
+        $result_query_num = $this->db->query($query_num) or die($this->error);
+        $row_num = $result_query_num->fetch_array(MYSQLI_ASSOC);
+        $totalRowCount = $row_num['num_rows'];
+        $showLimit = 9;
+        $query = "SELECT * FROM `books` WHERE id > $lastBook_id LIMIT $showLimit";
+        $result = $this->db->query($query) or die($this->error);
+        if ($row = $result->num_rows > 0) {
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $book_id = $row["id"];
+                $img = $row['img'];
+                $title = $row['title'];
+                $author = $row['author'];
+                $output .= '<div class="books__item"> 
+        <div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
+            </div>
+                <h2 class="item-books__title">' . $title . '</h2>
+                <span class="item-books__author">' . $author . '</span>';
+                if (isset($_SESSION['name'])) {
+                    $output .= "<a href=\"includes/book_reading_page.php?id=$book_id\" class='item-books__button'>Читать</a>";
+                    $output .= "<button class='item-books__will_read will_read-$book_id' onClick='AjaxWillRead($book_id)'>Читать позже</button>";
+                }
+                $output .= '</div>';
+            }
+            if ($totalRowCount < $showLimit) {
+                $output .= '<div id="remove_row"><button type="button" name="btn_more" data-vid="' . $book_id . '" id="btn_more" class="button__read_more form-control">Ещё книги...</button></div>';
+            }
+            $output .= '</div>';
+            echo $output;
+        }
+    }
+
+    public function bookReadingPage($id) // Функция вывода книги т.е. чтобы читать книгу
+    {
+        $query = "SELECT * FROM `books` WHERE id='$id'";
+        $result = $this->db->query($query) or die($this->db->error);
+        while ($book = $result->fetch_array(MYSQLI_ASSOC)) {
+            $img  = $book['img'];
+            $title  = $book['title'];
+            $author = $book['author'];
+            $description = $book['description'];
+            echo ' <h1 class="title">' . $title . '</h1>
+            <h3 class="title">' . $author . '</h3>
+            <div class="item-books__img margin-books__img">
+            <img src="../img/' . $img . '" alt="' . $title . '">
+            </div>
+            <p class="book_description"><h3 class="title description__title">Описание</h3><br>' . $description . '</p>
+            <p class="text_book"><h3 class="title">Книга:</h3><br></p>';
+        }
+    }
+
+    public function BooksViewed() // Функция вывода просмотренных книг
+    {
+        $uid = $_SESSION['uid'];
+        $query = "SELECT * FROM `books_viewed` WHERE user_uid='$uid'";
+        $result = $this->db->query($query) or die($this->error);
+        $count_result = $result->num_rows;
+        if ($count_result > 0) {
+            $output = '';
+            while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
+                $id = $read_books['id'];
+                $img = $read_books['img'];
+                $title = $read_books['title'];
+                $author = $read_books['author'];
+                $users_id = $read_books['users_id'];
+                $output .= '<div class="books__item books__item-' . $id . '"><div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
+                </div>
+                <h2 class="item-books__title">' . $title . '</h2>
+                <span class="item-books__author">' . $author . '</span>';
+                $output .= "<a href=\"book_reading_page.php?id=$users_id\" class='item-books__button'>Читать</a>";
+                $output .= "<button class='item-books__viewed books_viewed-$id' onClick='deleteBookViewed($id)'>Удалить</button>
+                </div>";
+            }
+        } else {
+            $output .= '<span>Просмотренных книг нет!</span>';
+        }
+        echo $output;
+    }
+
+    public function addToBooksViewed($id, $uid) // Функция добавления книги в каталог "Просмотренные книги"
+    {
+        $query = "SELECT * FROM `books` WHERE id='$id'";
+        $result = $this->db->query($query) or die($this->error);
+        $books = $result->fetch_array(MYSQLI_ASSOC);
+        $id = $books['id'];
+        $img = $books['img'];
+        $title = $books['title'];
+        $author = $books['author'];
+
+        $query = "SELECT * FROM `books_viewed` WHERE users_id='$id' AND user_uid='$uid'";
+        $result = $this->db->query($query) or die($this->db->error);
+        $count_row = $result->num_rows;
+
+        if ($count_row == 1) { // Если такая книга уже есть в каталоге "Просмотренные книги" то не добавляем
+            return false;
+        } else { // или добавляем книгу в каталог "Просмотренные книги"
+            $query = "INSERT INTO `books_viewed` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
+            $result = $this->db->query($query) or die($this->error);
+        }
+    }
+
+    public function deleteBookViewed($id, $uid) // Функция удаления книги из каталога "Просмотренные книги"
+    {
+        $query = "DELETE FROM `books_viewed` WHERE id='$id' AND user_uid='$uid'";
+        $result = $this->db->query($query) or die($this->error);
+    }
+
+    public function readTheBook() // Функция вывода кнги из каталога "Прочитанных книги"
     {
         $uid = $_SESSION['uid'];
         $query = "SELECT * FROM `read_the_book` WHERE user_uid='$uid'";
         $result = $this->db->query($query) or die($this->error);
         $count_result = $result->num_rows;
-        if ($count_result >= 1) {
+        if ($count_result > 0) {
+            $output = '';
             while ($read_books = $result->fetch_array(MYSQLI_ASSOC)) {
-                echo '<div class="books__item">
-                <div class="item-books__img">
-                    <img src="../img/' . $read_books['img'] . '" alt="' . $read_books['tite'] . '">
+                $id = $read_books['id'];
+                $img = $read_books['img'];
+                $title = $read_books['title'];
+                $author = $read_books['author'];
+                $users_id = $read_books['users_id'];
+                $output .= '<div class="books__item books__item-' . $id . '"><div class="item-books__img">
+                <img src="../img/' . $img . '" alt="' . $title . '">
                 </div>
-                    <h2 class="item-books__title">' . $read_books['title'] . '</h2>
-                    <span class="item-books__author">' . $read_books['author'] . '</span>
-                </div>';
+                <h2 class="item-books__title">' . $title . '</h2>
+                <span class="item-books__author">' . $author . '</span>';
+                $output .= "<a href=\"book_reading_page.php?id=$users_id\" class='item-books__button'>Читать</a>";
+                $output .= "<button class='item-books__viewed books_viewed-$id' onClick='deleteReadBook($id)'>Удалить</button>
+                </div>";
             }
-        } else if ($count_result == 0) { // Если в списке прочитанных книг пусто (0) 
-            echo '<span>Вы ещё ничего не читали!</span>';
+        } else {
+            $output .= '<span>Прочитанных книг нет!</span>';
         }
+        echo $output;
     }
 
-    public function deleteWillRead($id, $uid) // Функция удаления книги из списка "буду читать"
-    {
-        $query = "DELETE FROM `i_will_read` WHERE id='$id' AND user_uid='$uid'";
-        $result = $this->db->query($query) or die($this->error);
-    }
-
-    public function addToReadList($id, $uid) // Функция добавления книги в список прочитанных
+    public function addToReadList($id, $uid) // Функция добавления книги в каталог "Прочитанные книги"
     {
         $query = "SELECT * FROM `books` WHERE id='$id'";
         $result = $this->db->query($query) or die($this->error);
@@ -197,15 +274,23 @@ class User // Класс User
         $result = $this->db->query($query) or die($this->db->error);
         $count_row = $result->num_rows;
 
-        if ($count_row == 1) { // Есди такая книга уже есть в списке прочитанных то не добавляем
+        if ($count_row == 1) { // Если такая книга уже есть в списке прочитанных то не добавляем
+            echo "Добавлена ранее!";
             return false;
-        } else { // или добавляем в список прочитанных
+        } else { // или добавляем книгу в каталог "Прочитанные книги"
             $query = "INSERT INTO `read_the_book` (img, title, author, users_id, user_uid) VALUES ('$img', '$title', '$author', '$id', '$uid')";
             $result = $this->db->query($query) or die($this->error);
+            echo "Книга добавлена!";
         }
     }
 
-    public function willRead() // Функция вывода книг из списка "прочитать позже"
+    public function deleteReadBook($id, $uid) // Функция удаления книги из каталога "Прочитанные книги"
+    {
+        $query = "DELETE FROM `read_the_book` WHERE id='$id' AND user_uid='$uid'";
+        $result = $this->db->query($query) or die($this->error);
+    }
+
+    public function willRead() // Функция вывода книг из каталога "Читать позже"
     {
         $uid = $_SESSION['uid'];
         $query = "SELECT * FROM `i_will_read` WHERE user_uid='$uid'";
@@ -235,7 +320,7 @@ class User // Класс User
         echo $output;
     }
 
-    public function addToWillRead($id, $uid) // Функция добавления книги в список "читать позже"
+    public function addToWillRead($id, $uid) // Функция добавления книги в каталог "Читать позже"
     {
         $query = "SELECT * FROM `books` WHERE id='$id'";
         $result = $this->db->query($query) or die($this->error);
@@ -249,7 +334,7 @@ class User // Класс User
         $result = $this->db->query($query) or die($this->db->error);
         $count_row = $result->num_rows;
 
-        if ($count_row == 1) { // Если такая книга уже есть в списке то добавлять не надо
+        if ($count_row == 1) { // Если такая книга уже есть в каталоге то добавлять не надо
             echo "Нет";
             return false;
         } else {
@@ -261,23 +346,10 @@ class User // Класс User
         }
     }
 
-    public function bookReadingPage($id, $users_id) // Функция вывода книги
+    public function deleteWillRead($id, $uid) // Функция удаления книги из каталога "Читать позже"
     {
-        $query = "SELECT * FROM `books` WHERE id='$id' OR id='$users_id'";
-        $result = $this->db->query($query) or die($this->db->error);
-        while ($book = $result->fetch_array(MYSQLI_ASSOC)) {
-            $img  = $book['img'];
-            $title  = $book['title'];
-            $author = $book['author'];
-            $description = $book['description'];
-            echo ' <h1 class="title">' . $title . '</h1>
-            <h3 class="title">' . $author . '</h3>
-            <div class="item-books__img margin-books__img">
-            <img src="../img/' . $img . '" alt="' . $title . '">
-            </div>
-            <p class="book_description"><h3 class="title description__title">Описание</h3><br>' . $description . '</p>
-            <p class="text_book"><h3 class="title">Книга:</h3><br></p>';
-        }
+        $query = "DELETE FROM `i_will_read` WHERE id='$id' AND user_uid='$uid'";
+        $result = $this->db->query($query) or die($this->error);
     }
 }
 
@@ -290,7 +362,7 @@ class Chat // Класс Chat
         $this->db = $this->db->ret_obj();
     }
 
-    public function MessageOutput()
+    public function MessageOutput() // Функция вывода сообщений
     {
         $query = "SELECT * FROM `chat`";
         $result = $this->db->query($query) or die($this->error);
@@ -314,7 +386,7 @@ class Chat // Класс Chat
         }
     }
 
-    public function AddMessageChat($name, $message)
+    public function AddMessageChat($name, $message) // Функция отправки сообщения
     {
         $uid = $_SESSION['uid'];
         $query = "INSERT INTO `chat` (`IdUser`, `UserName`, `Message`) VALUES ('$uid', '$name', '$message')";

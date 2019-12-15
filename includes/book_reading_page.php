@@ -1,23 +1,25 @@
 <?php
 session_start();
 
-if (isset($_SESSION['name'])) {
+if (isset($_SESSION['name'])) { // Если пользователь авторизован
 
-    include_once 'functions.php';
+    require_once 'functions.php';
     include_once 'header.php';
-    $user = new User;
+    $user = new User();
 
-    if (isset($_GET['id']) || isset($_GET['users_id'])) {  // проверка отправки id книги и id сессии пользователя 
+    if (isset($_GET['id'])) { // Поиск id книги
         ?>
         <div class="wrapper">
-            <span id="button_top" onclick="return up()">&#9650; Наверх</span>
+            <span id="button_top" onclick="return up()">&#9650; Наверх</span> <!-- Кнопка ScrollUp -->
             <section class="books">
-                <?php
+                <?
                         $id = $_GET['id'];
-                        $users_id = $_GET['users_id'];
                         $uid = $_SESSION['uid'];
-                        $user->bookReadingPage($id, $users_id); // Вызов функции вывода книги 
-                        $user->addToReadList($id, $uid); // Добавление функции в список прочитанных
+                        ?>
+                <button class="add_to_books_viewed" onClick="addBookRead('<?= $id ?>')">Добавить в прочитанные</button> <!-- Добавление книги в каталог "Прочитанные книги" -->
+                <?php
+                        $user->bookReadingPage($id); // Вызов функции вывода книги
+                        $user->addToBooksViewed($id, $uid); // Добавление книги в каталог "Просмотренные книги"
                         ?>
             </section>
         </div>

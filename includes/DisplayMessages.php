@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'functions.php';
-$user = new User;
-$chat = new Chat;
-$chat->MessageOutput();
+require_once 'functions.php';
+$user = new User();
+$chat = new Chat();
+$chat->MessageOutput(); // Вызов функции вывода сообщений

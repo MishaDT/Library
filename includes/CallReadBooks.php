@@ -3,7 +3,7 @@ session_start();
 require_once 'functions.php';
 $user = new User();
 if (isset($_SESSION['name'])) { // Если пользователь авторизован
-    $user->willRead(); // Вызов функции вывода каталога книг "Буду читать"
+    $user->readTheBook(); // Вызов функции вывода каталога книг "Прочитанные книги" 
 } else {
     header("Location: ../index.php");
 }
