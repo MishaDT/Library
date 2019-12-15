@@ -624,16 +624,47 @@ div#remove_row {
     background: rgba(0, 150, 136, .1);
 }
 
-button.item-books__will_read{
-    cursor: pointer; 
-    font-size:14px; 
-    background-color:transparent; 
-    border: none; 
-    outline: none; 
-    text-decoration: underline; 
+button.item-books__will_read, button.item-books__read, button.item-books__viewed {
+    cursor: pointer;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-decoration: underline;
     color: #000;
 }
 
-button.item-books__will_read:hover{
+button.item-books__will_read:hover, button.item-books__read:hover, button.item-books__viewed:hover {
     color: #009688;
+}
+
+button.add_to_books_viewed {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    margin: 20px;
+    padding: 10px 20px;
+    color: #000;
+    background: #cccccca8;
+    border-radius: 25px;
+    font-size: 13px;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+}
+
+button.add_to_books_viewed:hover {
+    background-color: #00b19f;
+    color: #fff;
+    box-shadow: 0 5px 10px 0 #065850;
+    transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
 }
