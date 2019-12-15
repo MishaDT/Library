@@ -1,4 +1,59 @@
-function deleteWillRead(id) {
+function deleteBookViewed(id) { // Функция удаления книги из каталога "Просмотренные книги"
+    $.ajax({
+        type: "POST",
+        url: "../includes/AjaxDeleteBookViewed.php",
+        data: {
+            id: id
+        },
+        success: function (data) {
+            $('.books__item-' + id + '').hide(500, function load_data() {
+                $.ajax({
+                    url: "../includes/CallBooksViewed.php",
+                    method: "POST",
+                    success: function (data) {
+                        $('#books__list').html(data);
+                    }
+                });
+            });
+        }
+    });
+}
+
+function deleteReadBook(id) { // Функция удаления книги из каталога "Прочитанные книги"
+    $.ajax({
+        type: "POST",
+        url: "../includes/AjaxDeleteReadBook.php",
+        data: {
+            id: id
+        },
+        success: function (data) {
+            $('.books__item-' + id + '').hide(500, function load_data() {
+                $.ajax({
+                    url: "../includes/CallReadBooks.php",
+                    method: "POST",
+                    success: function (data) {
+                        $('#books__list').html(data);
+                    }
+                });
+            });
+        }
+    });
+}
+
+function addBookRead(id) { // Функция добавления книги в каталог "Прочитанные книги"
+    $.ajax({
+        type: "POST",
+        url: "../includes/reading_page.php",
+        data: {
+            id: id
+        },
+        success: function (data) {
+            $('.add_to_books_viewed').html(data).animate({ opacity: .5 }, 500);
+        }
+    });
+}
+
+function deleteWillRead(id) { // Функция удаления книги из каталога "Читать позже"
     $.ajax({
         type: "POST",
         url: "../includes/AjaxDeleteWillRead.php",
@@ -19,7 +74,7 @@ function deleteWillRead(id) {
     });
 }
 
-function AjaxWillRead(video_id) {
+function AjaxWillRead(video_id) { // Функция добавления книги в каталог "Читать позже"
     $.ajax({
         type: "POST",
         url: "../includes/AjaxInsertWillRead.php",
@@ -39,7 +94,7 @@ function AjaxWillRead(video_id) {
     });
 }
 
-function up() {
+function up() { // Функция для работы кнопки вверх 
     var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     if (top > 0) {
         window.scrollBy(0, ((top + 100) / -10));
@@ -52,46 +107,4 @@ jQuery(function (f) {
     f(window).scroll(function () {
         element['fade' + (f(this).scrollTop() > 200 ? 'In' : 'Out')](250);
     });
-});
-
-$(document).ready(function () {
-    $("#InputMessage").keyup(function (e) {
-        var InputMessage = $("#InputMessage").val();
-        var sub = document.getElementById("FormSub");
-        if (e.keyCode == 13 && InputMessage[0] != "\n") {
-            $.ajax({
-                type: 'POST',
-                url: "AddMessageChat.php",
-                data: {
-                    InputMessage: InputMessage
-                },
-                success: function () {
-                    $("#BlockMessage").load("DisplayMessagesOnce.php");
-                    $("#InputMessage").val("");
-                }
-            });
-        }
-
-    });
-
-    $("input[type=submit]").on("click", function (e) {
-        var InputMessage = $("#InputMessage").val();
-        $.ajax({
-            type: 'POST',
-            url: "AddMessageChat.php",
-            data: {
-                InputMessage: InputMessage
-            },
-            success: function () {
-                $("#BlockMessage").load("DisplayMessagesOnce.php");
-                $("#InputMessage").val("");
-            }
-        });
-    });
-
-    setInterval(function () {
-        $("#BlockMessage").load("DisplayMessages.php");
-    }, 1500);
-
-    $("#BlockMessage").load("DisplayMessagesOnce.php");
 });

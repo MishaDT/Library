@@ -1,12 +1,12 @@
 $(document).ready(function () {
     $(document).on('click', '#btn_more', function () {
-        var last_video_id = $(this).data("vid");
+        var lastBook_id = $(this).data("vid");
         $('#btn_more').html("Ещё книги...");
         $.ajax({
             url: "../includes/AjaxBookOutput.php",
             method: "POST",
             data: {
-                last_video_id: last_video_id
+                lastBook_id: lastBook_id
             },
             dataType: "text",
             success: function (data) {
