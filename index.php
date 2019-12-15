@@ -22,14 +22,15 @@ $user = new User();
         <div class="wrapper">
             <ul class="header__menu">
                 <li><span class="link logo">Library</span></li>
-                <?php if (isset($_SESSION['name'])) { ?>
-                    <li><a href="includes/read_the_book.php" class="link">Прочитанные книги</a></li>
+                <?php if (isset($_SESSION['name'])) { // Если пользователь авторизован ?>
+                    <li><a href="includes/books_viewed.php" class="link">Просмотренные</a></li>
+                    <li><a href="includes/read_the_book.php" class="link">Прочитанные</a></li>
                     <li><a href="includes/list_will_read.php" class="link">Буду читать</a></li>
                 <?php } ?>
             </ul>
             <ul class="header__menu">
                 <li class="header__menu-elements">
-                    <?php if (isset($_SESSION['name'])) { ?>
+                    <?php if (isset($_SESSION['name'])) { // Если пользователь авторизован ?>
                         <a href="/" class="link">
                             <?php echo $_SESSION['name']; ?>
                         </a>
@@ -43,7 +44,7 @@ $user = new User();
                     <a href="includes/registration.php" class="link">Регистрация</a>
                 <?php } ?>
                 </li>
-                <li><?php if (!isset($_SESSION['name'])) { ?>
+                <li><?php if (!isset($_SESSION['name'])) { // Если пользователь не авторизован ?>
                         <a href="includes/authorization.php" class="link">Войти</a>
                     <?php } ?>
                 </li>
@@ -51,11 +52,11 @@ $user = new User();
         </div>
     </header>
     <div class="wrapper">
-        <span id="button_top" onclick="return up()">&#9650; Наверх</span>
+        <span id="button_top" onclick="return up()">&#9650; Наверх</span> <!-- ScrollUp -->
         <section class="books">
             <h1 class="title">Каталог книг</h1>
             <p class="description">Читайте книги совершенно бесплатно</p>
-            <?php $user->books(); ?>
+            <?php $user->books(); // Вызов функции вывода книг?>
         </section>
     </div>
     <script type="text/javascript" src="js/ajax.js"></script>
