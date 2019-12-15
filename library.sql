@@ -2,9 +2,9 @@
 -- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3305
--- Время создания: Дек 12 2019 г., 10:52
--- Версия сервера: 5.7.20
+-- Хост: 127.0.0.1:3306
+-- Время создания: Дек 15 2019 г., 22:25
+-- Версия сервера: 5.6.38
 -- Версия PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -68,6 +68,21 @@ INSERT INTO `books` (`id`, `img`, `title`, `author`, `description`) VALUES
 (27, 'Иди туда, где страшно.jpg', 'Иди туда, где страшно. Именно там ты обретешь силу', 'Джим Лоулесс', 'Жить легко и свободно нам мешают наши страхи. Они, словно тигры, рычат: «даже не думай пробовать», «откажись, все равно ничего не выйдет», «еще не время». И мы слушаем. И мы отступаем. Откладываем свою мечту и жизнь в долгий ящик.'),
 (28, 'Deadline.jpg', 'Deadline. Роман об управлении проектами', 'Том ДеМарко', 'Все принципы хорошего менеджмента описаны здесь в интересной и ненавязчивой форме бизнес-романа. Автор — Том Демарко — написал уже 13 книг, но Deadline считает своей самой сильной книгой. Он уверен — ее чтение добавит вам целых два года великолепного управленческого опыта, а захватывающий сюжет и наглядные примеры будут полезнее любого учебника.'),
 (29, 'Илон Маск. История успеха.jpg', 'Илон Маск. Правила успеха', 'Илон Маск', 'Биография и правила успеха самого известного предпринимателя и инноватора нашего времени, создателя Tesla и SpaceX, прототипа Железного Человека Илона Маска!');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `books_viewed`
+--
+
+CREATE TABLE `books_viewed` (
+  `id` int(11) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `user_uid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -156,6 +171,12 @@ ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `books_viewed`
+--
+ALTER TABLE `books_viewed`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `chat`
 --
 ALTER TABLE `chat`
@@ -190,6 +211,12 @@ ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT для таблицы `books_viewed`
+--
+ALTER TABLE `books_viewed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT для таблицы `chat`
 --
 ALTER TABLE `chat`
@@ -199,13 +226,13 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT для таблицы `i_will_read`
 --
 ALTER TABLE `i_will_read`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `read_the_book`
 --
 ALTER TABLE `read_the_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
