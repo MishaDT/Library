@@ -23,8 +23,8 @@ $user = new User();
             <ul class="header__menu">
                 <li><span class="link logo">Library</span></li>
                 <?php if (isset($_SESSION['name'])) { // Если пользователь авторизован ?>
-                    <li><a href="includes/books_viewed.php" class="link">Просмотренные</a></li>
-                    <li><a href="includes/read_the_book.php" class="link">Прочитанные</a></li>
+                    <li><a href="includes/books_viewed.php" class="link">Просмотренные книги</a></li>
+                    <li><a href="includes/read_the_book.php" class="link">Прочитанные книги</a></li>
                     <li><a href="includes/list_will_read.php" class="link">Буду читать</a></li>
                 <?php } ?>
             </ul>

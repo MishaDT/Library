@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 15 2019 г., 22:25
+-- Время создания: Дек 16 2019 г., 18:37
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.2.0
 
@@ -103,8 +103,8 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`IdMessage`, `IdUser`, `UserName`, `Message`, `datetime`) VALUES
-(199, 20, 'Миша', 'Тестовое письмо №1', '0000-00-00 00:00:00'),
-(200, 26, 'Вася', 'Тестовое письмо №2', '0000-00-00 00:00:00');
+(249, 20, 'Миша', 'Тестовое сообщение №1', '2019-12-16 18:29:00'),
+(250, 26, 'Вася', 'Тестовое письмо №2', '2019-12-16 18:34:00');
 
 -- --------------------------------------------------------
 
@@ -157,8 +157,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`uid`, `uname`, `uemail`, `upass`, `activity`, `lastOnline`) VALUES
 (20, 'Миша', 'misha@gmail.com', '202cb962ac59075b964b07152d234b70', 1, '2019-12-05 23:15:28'),
-(26, 'Вася', 'vasya@gmail.com', '202cb962ac59075b964b07152d234b70', 1, '2019-12-05 23:20:02'),
-(28, 'Кирилл', 'kiril@gmail.com', '202cb962ac59075b964b07152d234b70', 0, '2019-12-09 08:42:05');
+(26, 'Вася', 'vasya@gmail.com', '202cb962ac59075b964b07152d234b70', 1, '2019-12-05 23:20:02');
 
 --
 -- Индексы сохранённых таблиц
@@ -214,25 +213,25 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT для таблицы `books_viewed`
 --
 ALTER TABLE `books_viewed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `IdMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `IdMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
 -- AUTO_INCREMENT для таблицы `i_will_read`
 --
 ALTER TABLE `i_will_read`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `read_the_book`
 --
 ALTER TABLE `read_the_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
