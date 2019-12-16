@@ -366,8 +366,38 @@ class Chat // Класс Chat
     {
         $query = "SELECT * FROM `chat`";
         $result = $this->db->query($query) or die($this->error);
+
         while ($chat = $result->fetch_array(MYSQLI_ASSOC)) {
             $UserName  = $chat['UserName'];
+            $date_str = new DateTime($chat["datetime"]);
+            $date = $date_str->Format('d.m.Y');
+            $date_year = $date_str->Format('Y');
+            $date_time = $date_str->Format('H:i');
+            $ndate_exp = explode('.', $date);
+            $nmonth = array(
+                1 => 'янв',
+                2 => 'фев',
+                3 => 'мар',
+                4 => 'апр',
+                5 => 'мая',
+                6 => 'июн',
+                7 => 'июл',
+                8 => 'авг',
+                9 => 'сен',
+                10 => 'окт',
+                11 => 'ноя',
+                12 => 'дек'
+            );
+            foreach ($nmonth as $key => $value) {
+                if($key == intval($ndate_exp[1])) $nmonth_name = $value; }
+                  if ($date == date('d.m.Y')){ $datetime = 'Cегодня в ' .$date_time;
+                } else if ($date == date('d.m.Y', strtotime('-1 day'))){
+                    $datetime = 'Вчера в ' .$date_time;
+                } else if ($date != date('d.m.Y') && $date_year != date('Y')){
+                    $datetime = $ndate_exp[0].' '.$nmonth_name.' '.$ndate_exp[2]. ' в '.$date_time;
+                } else {
+                    $datetime = $ndate_exp[0].' '.$nmonth_name.' в '.$date_time;
+                }
             $Message  = $chat['Message'];
             $SessionName = $_SESSION['name'];
             if ($UserName == $SessionName) {
@@ -375,12 +405,14 @@ class Chat // Класс Chat
                 <div class="OneUser__margin-message">
                 <h3 class="one-user">' . $UserName . '</h3>
                 <p class="MessageWidth_OneUser">' . $Message . '</p>
+                <span class="Chat__datatime--OneUser">' . $datetime . '</span>
             </div></div>';
             } else {
                 echo '<div class="TwoUser">
                 <div class="TwoUser__margin-message">
                 <h3 class="two-user">' . $UserName . '</h3>
                 <p class="MessageWidth_TwoUser">' . $Message . '</p>
+                <span class="Chat__datatime--TwoUser">' . $datetime . '</span>
             </div></div>';
             }
         }
@@ -389,7 +421,8 @@ class Chat // Класс Chat
     public function AddMessageChat($name, $message) // Функция отправки сообщения
     {
         $uid = $_SESSION['uid'];
-        $query = "INSERT INTO `chat` (`IdUser`, `UserName`, `Message`) VALUES ('$uid', '$name', '$message')";
+        $date = date('Y-m-d H:i');
+        $query = "INSERT INTO `chat` (`IdUser`, `UserName`, `Message`, `datetime`) VALUES ('$uid', '$name', '$message', '$date')";
         $result = $this->db->query($query) or die($this->error);
     }
 }
