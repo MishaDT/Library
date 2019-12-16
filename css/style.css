@@ -511,6 +511,7 @@ div.block_message {
 }
 
 div.OneUser__margin-message {
+    position: relative;
     margin-top: 10px;
     font-size: 14px;
     background: rgba(228, 228, 243, 0.62);
@@ -520,9 +521,11 @@ div.OneUser__margin-message {
 }
 
 div.TwoUser__margin-message {
+    position: relative;
     margin-top: 10px;
     font-size: 14px;
     max-width: 70%;
+    min-width: 40%;
     background: rgba(226, 255, 243, 1);
     padding: 20px 20px 20px 30px;
     border-radius: 25px;
@@ -536,6 +539,7 @@ p.MessageWidth_OneUser {
     word-wrap: break-word;
     display: block;
     line-height: 18px;
+    padding-bottom: 10px;
 }
 
 p.MessageWidth_TwoUser {
@@ -544,6 +548,7 @@ p.MessageWidth_TwoUser {
     max-width: 100%;
     line-height: 18px;
     text-align: end;
+    padding-bottom: 10px;
 }
 
 div.TwoUser {
@@ -667,4 +672,23 @@ button.add_to_books_viewed:hover {
     -moz-transition: .3s ease-in-out;
     -ms-transition: .3s ease-in-out;
     -o-transition: .3s ease-in-out;
+}
+
+span.Chat__datatime--OneUser{
+    position: absolute;
+    color: rgba(89, 108, 254, 1);
+    font-size: 12px;
+    bottom: 10px;
+    right: 20px;
+    font-family: monospace;
+}
+span.Chat__datatime--TwoUser {
+    position: absolute;
+    display: block;
+    color: rgba(0, 109, 0, 1);
+    font-size: 12px;
+    bottom: 10px;
+    right: 20px;
+    font-family: monospace;
+    margin-top: 50px;
 }
